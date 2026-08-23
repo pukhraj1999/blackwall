@@ -7,6 +7,38 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface BwCard {
+        /**
+          * @default '#'
+         */
+        "Link": string;
+        /**
+          * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
+         */
+        "description": string;
+        /**
+          * @default 200
+         */
+        "descriptionLength": number;
+        /**
+          * @default 'Blackwall card image'
+         */
+        "imgAlt": string;
+        /**
+          * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
+         */
+        "imgSrc": string;
+        /**
+          * @default 'Tags:'
+         */
+        "tagTitle": string;
+        /**
+          * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
+         */
+        "tags": string[];
+        /**
+          * @default 'Blackwall card'
+         */
+        "title": string;
     }
     interface MyComponent {
         /**
@@ -43,6 +75,38 @@ declare global {
 }
 declare namespace LocalJSX {
     interface BwCard {
+        /**
+          * @default '#'
+         */
+        "Link"?: string;
+        /**
+          * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
+         */
+        "description"?: string;
+        /**
+          * @default 200
+         */
+        "descriptionLength"?: number;
+        /**
+          * @default 'Blackwall card image'
+         */
+        "imgAlt"?: string;
+        /**
+          * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
+         */
+        "imgSrc"?: string;
+        /**
+          * @default 'Tags:'
+         */
+        "tagTitle"?: string;
+        /**
+          * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
+         */
+        "tags"?: string[];
+        /**
+          * @default 'Blackwall card'
+         */
+        "title"?: string;
     }
     interface MyComponent {
         /**
@@ -59,6 +123,15 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
 
+    interface BwCardAttributes {
+        "imgSrc": string;
+        "imgAlt": string;
+        "title": string;
+        "description": string;
+        "descriptionLength": number;
+        "tagTitle": string;
+        "Link": string;
+    }
     interface MyComponentAttributes {
         "first": string;
         "middle": string;
@@ -66,7 +139,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
-        "bw-card": BwCard;
+        "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] };
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
 }

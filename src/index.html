@@ -4,11 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
-
     <script type="module" src="/build/blackwall.esm.js"></script>
     <script nomodule src="/build/blackwall.js"></script>
+    <style>
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+    </style>
   </head>
   <body>
-    <bw-card></bw-card>
+    <main class="card-container">
+      <bw-card></bw-card>
+      <bw-card></bw-card>
+      <bw-card></bw-card>
+      <bw-card></bw-card>
+    </main>
+    <main class=""></main>
   </body>
 </html>

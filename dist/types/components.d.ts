@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
+import ILink from "./models/ILink";
+export { default as ILink } from "./models/ILink";
 export namespace Components {
     interface BwCard {
         /**
@@ -40,6 +42,38 @@ export namespace Components {
          */
         "tags": string[];
     }
+    interface BwContainer {
+        /**
+          * @default false
+         */
+        "grid": boolean;
+        /**
+          * @default "0px"
+         */
+        "mg": string;
+        /**
+          * @default "10px"
+         */
+        "pd": string;
+    }
+    interface BwNav {
+        /**
+          * @default {name:"Navbar", link:"#"}
+         */
+        "homeLink": ILink;
+        /**
+          * @default '0px'
+         */
+        "mg": string;
+        /**
+          * @default [     {name:"Search",link:"#"},     {name:"Manage",link:"#"},     {name:"About",link:"#"},     {name:"Profile",link:"#"}   ]
+         */
+        "navLinks": Array<ILink>;
+        /**
+          * @default '10px'
+         */
+        "pd": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -62,6 +96,18 @@ declare global {
         prototype: HTMLBwCardElement;
         new (): HTMLBwCardElement;
     };
+    interface HTMLBwContainerElement extends Components.BwContainer, HTMLStencilElement {
+    }
+    var HTMLBwContainerElement: {
+        prototype: HTMLBwContainerElement;
+        new (): HTMLBwContainerElement;
+    };
+    interface HTMLBwNavElement extends Components.BwNav, HTMLStencilElement {
+    }
+    var HTMLBwNavElement: {
+        prototype: HTMLBwNavElement;
+        new (): HTMLBwNavElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -70,6 +116,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "bw-card": HTMLBwCardElement;
+        "bw-container": HTMLBwContainerElement;
+        "bw-nav": HTMLBwNavElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -108,6 +156,38 @@ declare namespace LocalJSX {
          */
         "tags"?: string[];
     }
+    interface BwContainer {
+        /**
+          * @default false
+         */
+        "grid"?: boolean;
+        /**
+          * @default "0px"
+         */
+        "mg"?: string;
+        /**
+          * @default "10px"
+         */
+        "pd"?: string;
+    }
+    interface BwNav {
+        /**
+          * @default {name:"Navbar", link:"#"}
+         */
+        "homeLink"?: ILink;
+        /**
+          * @default '0px'
+         */
+        "mg"?: string;
+        /**
+          * @default [     {name:"Search",link:"#"},     {name:"Manage",link:"#"},     {name:"About",link:"#"},     {name:"Profile",link:"#"}   ]
+         */
+        "navLinks"?: Array<ILink>;
+        /**
+          * @default '10px'
+         */
+        "pd"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -132,6 +212,15 @@ declare namespace LocalJSX {
         "tagTitle": string;
         "Link": string;
     }
+    interface BwContainerAttributes {
+        "mg": string;
+        "pd": string;
+        "grid": boolean;
+    }
+    interface BwNavAttributes {
+        "mg": string;
+        "pd": string;
+    }
     interface MyComponentAttributes {
         "first": string;
         "middle": string;
@@ -140,6 +229,8 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] };
+        "bw-container": Omit<BwContainer, keyof BwContainerAttributes> & { [K in keyof BwContainer & keyof BwContainerAttributes]?: BwContainer[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `attr:${K}`]?: BwContainerAttributes[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `prop:${K}`]?: BwContainer[K] };
+        "bw-nav": Omit<BwNav, keyof BwNavAttributes> & { [K in keyof BwNav & keyof BwNavAttributes]?: BwNav[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `attr:${K}`]?: BwNavAttributes[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `prop:${K}`]?: BwNav[K] };
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
 }
@@ -148,6 +239,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "bw-card": LocalJSX.IntrinsicElements["bw-card"] & JSXBase.HTMLAttributes<HTMLBwCardElement>;
+            "bw-container": LocalJSX.IntrinsicElements["bw-container"] & JSXBase.HTMLAttributes<HTMLBwContainerElement>;
+            "bw-nav": LocalJSX.IntrinsicElements["bw-nav"] & JSXBase.HTMLAttributes<HTMLBwNavElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

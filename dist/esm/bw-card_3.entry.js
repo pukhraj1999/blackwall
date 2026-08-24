@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-C2eNYrd9.js';
+import { r as registerInstance, h } from './index-BOf3roUy.js';
 
 const bwCardCss = () => `:host{display:block}*{margin:0;padding:0;box-sizing:border-box}.card{margin:5px;border:3px solid black;background-color:#24293b;box-shadow:0 0 2px 2spx rgba(0, 0, 0, 0.5)}.card-content{padding:10px}.card-title{font-size:1.5rem;font-weight:bold;letter-spacing:1px;color:white}.card-description{font-size:1rem;color:white}.card-img{width:100%;height:250px}.card-btn-box{display:grid;margin-top:10px}.card-btn{background-color:transparent;color:white;font-size:1.25rem;font-weight:bold;padding:10px 20px;text-align:center;letter-spacing:1px;border:2px solid white;text-decoration:none}.card-btn:hover{background-color:white;color:black;transition:all 0.3s ease-in-out;border:2px solid black}.card-tags{display:flex;flex-wrap:wrap;row-gap:5px;column-gap:10px;margin-top:5px;margin-bottom:5px}.card-tag-title{color:white;padding-top:4px;font-weight:bold;letter-spacing:1px}.card-tag{background-color:rgb(191, 23, 221);padding:4px;color:white;font-weight:bold;letter-spacing:1px;border-radius:5px;border:2px solid black;font-size:0.875rem}`;
 
@@ -31,4 +31,44 @@ const BwCard = class {
 };
 BwCard.style = bwCardCss();
 
-export { BwCard as bw_card };
+const bwContainerCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; }  .container {   background-color: #151723; }  .container-grid {   display: grid;   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } `;
+
+const BwContainer = class {
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+    }
+    mg = "0px";
+    pd = "10px";
+    grid = false;
+    render() {
+        return (h("main", { key: 'b19ad5eda922a81c1ad9be94ae2f69c978e4a99a', class: { "container": true, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '9b2c309104c22181aabd035d8dc7899b448c2b01' })));
+    }
+};
+BwContainer.style = bwContainerCss();
+
+const bwNavCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; }  a{   text-decoration: none; }  .nav-container{   display: flex;   align-items: center;   justify-content: space-between;   flex-wrap: wrap;   background-color: #24293b;   color: white; }  .left-header{   font-size: 1.5rem;   color: white; }  .right-link{   padding: 5px;   margin: 5px;   font-size: 1.25rem;   color: white;   letter-spacing: 1px;   border: 4px solid transparent; } .right-link:hover{   border: 4px solid #151723; }`;
+
+const BwNav = class {
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+    }
+    links;
+    mg = '0px';
+    pd = '10px';
+    homeLink = { name: "Navbar", link: "#" };
+    navLinks = [
+        { name: "Search", link: "#" },
+        { name: "Manage", link: "#" },
+        { name: "About", link: "#" },
+        { name: "Profile", link: "#" }
+    ];
+    componentWillLoad() {
+        this.links = this.navLinks;
+    }
+    render() {
+        return (h("nav", { key: 'efba128fdc10a09173d12db27911fbba86325fa7', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, h("div", { key: '377dd897009c05ed43d8e07787096473848466c1', class: "left" }, h("a", { key: '33bdf2b09497ffecdbb80050c52824c3da92f443', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), h("div", { key: '3894d5de28e5304c6cb87fabcc30b66e57b8b49e', class: "mid" }), h("div", { key: '6df53a2a2499dd7aed390555e7528d2f70f8b63a', class: "right" }, this.links.map(({ name, link }) => h("a", { class: "right-link", href: link }, name)))));
+    }
+};
+BwNav.style = bwNavCss();
+
+export { BwCard as bw_card, BwContainer as bw_container, BwNav as bw_nav };

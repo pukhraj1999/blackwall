@@ -1,7 +1,7 @@
 'use strict';
 
 const NAMESPACE = 'blackwall';
-const BUILD = /* blackwall */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", lazyLoad: true, prop: true, propChangeCallback: false, updatable: true};
+const BUILD = /* blackwall */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", lazyLoad: true, propChangeCallback: false, state: true, updatable: true};
 
 /*
  Stencil Client Platform v4.44.1 | MIT Licensed | https://stenciljs.com
@@ -60,7 +60,7 @@ var registerInstance = (lazyInstance, hostRef) => {
   if (!hostRef) return;
   lazyInstance.__stencil__getHostRef = () => hostRef;
   hostRef.$lazyInstance$ = lazyInstance;
-  if (hostRef.$cmpMeta$.$flags$ & 512 /* hasModernPropertyDecls */ && (BUILD.prop)) {
+  if (hostRef.$cmpMeta$.$flags$ & 512 /* hasModernPropertyDecls */ && (BUILD.state)) {
     reWireGetterSetter(lazyInstance, hostRef);
   }
 };
@@ -442,6 +442,11 @@ var isHost = (node) => node && node.$tag$ === Host;
 // src/runtime/parse-property-value.ts
 var parsePropertyValue = (propValue, propType, isFormAssociated) => {
   if (propValue != null && !isComplexType(propValue)) {
+    if (propType & 4 /* Boolean */) {
+      {
+        return propValue === "false" ? false : propValue === "" || !!propValue;
+      }
+    }
     if (propType & 2 /* Number */) {
       return typeof propValue === "string" ? parseFloat(propValue) : typeof propValue === "number" ? propValue : NaN;
     }
@@ -608,6 +613,7 @@ function sortedAttrNames(attrNames) {
   );
 }
 var hostTagName;
+var useNativeShadowDom = false;
 var isSvgMode = false;
 var createElm = (oldParentVNode, newParentVNode, childIndex) => {
   const newVNode2 = newParentVNode.$children$[childIndex];
@@ -638,6 +644,25 @@ var createElm = (oldParentVNode, newParentVNode, childIndex) => {
   }
   elm["s-hn"] = hostTagName;
   return elm;
+};
+var relocateToHostRoot = (parentElm) => {
+  plt.$flags$ |= 1 /* isTmpDisconnected */;
+  const host = parentElm.closest(hostTagName.toLowerCase());
+  if (host != null) {
+    const contentRefNode = Array.from(host.__childNodes || host.childNodes).find(
+      (ref) => ref["s-cr"]
+    );
+    const childNodeArray = Array.from(
+      parentElm.__childNodes || parentElm.childNodes
+    );
+    for (const childNode of contentRefNode ? childNodeArray.reverse() : childNodeArray) {
+      if (childNode["s-sh"] != null) {
+        insertBefore(host, childNode, contentRefNode != null ? contentRefNode : null);
+        childNode["s-sh"] = void 0;
+      }
+    }
+  }
+  plt.$flags$ &= -2 /* isTmpDisconnected */;
 };
 var addVnodes = (parentElm, before, parentVNode, vnodes, startIdx, endIdx) => {
   let containerElm = parentElm;
@@ -770,9 +795,16 @@ var patch = (oldVNode, newVNode2, isInitialRender = false) => {
   const elm = newVNode2.$elm$ = oldVNode.$elm$;
   const oldChildren = oldVNode.$children$;
   const newChildren = newVNode2.$children$;
+  const tag = newVNode2.$tag$;
   const text = newVNode2.$text$;
   if (text == null) {
     {
+      if (tag === "slot" && !useNativeShadowDom) {
+        if (oldVNode.$name$ !== newVNode2.$name$) {
+          newVNode2.$elm$["s-sn"] = newVNode2.$name$ || "";
+          relocateToHostRoot(newVNode2.$elm$.parentElement);
+        }
+      }
       updateElement(oldVNode, newVNode2, isSvgMode);
     }
     if (oldChildren !== null && newChildren !== null) {
@@ -799,6 +831,7 @@ var insertBefore = (parent, newNode, reference, isInitialLoad) => {
 };
 var renderVdom = (hostRef, renderFnResults, isInitialLoad = false) => {
   const hostElm = hostRef.$hostElement$;
+  const cmpMeta = hostRef.$cmpMeta$;
   const oldVNode = hostRef.$vnode$ || newVNode(null, null);
   const isHostElement = isHost(renderFnResults);
   const rootVnode = isHostElement ? renderFnResults : h(null, null, renderFnResults);
@@ -814,6 +847,7 @@ var renderVdom = (hostRef, renderFnResults, isInitialLoad = false) => {
   rootVnode.$flags$ |= 4 /* isHost */;
   hostRef.$vnode$ = rootVnode;
   rootVnode.$elm$ = oldVNode.$elm$ = hostElm.shadowRoot || hostElm ;
+  useNativeShadowDom = !!(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) && !(cmpMeta.$flags$ & 128 /* shadowNeedsScopedCss */);
   patch(oldVNode, rootVnode, isInitialLoad);
 };
 

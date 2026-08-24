@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -7,6 +7,11 @@
     <script type="module" src="/build/blackwall.esm.js"></script>
     <script nomodule src="/build/blackwall.js"></script>
     <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       .card-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -14,12 +19,13 @@
     </style>
   </head>
   <body>
-    <main class="card-container">
-      <bw-card></bw-card>
-      <bw-card></bw-card>
-      <bw-card></bw-card>
-      <bw-card></bw-card>
-    </main>
+    <bw-nav></bw-nav>
+    <bw-container grid="true">
+        <bw-card></bw-card>
+        <bw-card></bw-card>
+        <bw-card></bw-card>
+        <bw-card></bw-card>
+    </bw-container>
     <main class=""></main>
   </body>
 </html>

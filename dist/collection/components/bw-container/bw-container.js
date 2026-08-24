@@ -1,39 +1,26 @@
 import { h } from "@stencil/core";
-import { format } from "../../utils/utils";
-export class MyComponent {
-    /**
-     * The first name
-     */
-    first;
-    /**
-     * The middle name
-     */
-    middle;
-    /**
-     * The last name
-     */
-    last;
-    getText() {
-        return format(this.first, this.middle, this.last);
-    }
+export class BwContainer {
+    mg = "0px";
+    pd = "10px";
+    grid = false;
     render() {
-        return h("div", { key: '1160a6cf2976f0cc7e4f2650195d9cade849fe91' }, "Hello, World! I'm ", this.getText());
+        return (h("main", { key: 'b19ad5eda922a81c1ad9be94ae2f69c978e4a99a', class: { "container": true, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '9b2c309104c22181aabd035d8dc7899b448c2b01' })));
     }
-    static get is() { return "my-component"; }
+    static get is() { return "bw-container"; }
     static get encapsulation() { return "shadow"; }
     static get originalStyleUrls() {
         return {
-            "$": ["my-component.css"]
+            "$": ["bw-container.css"]
         };
     }
     static get styleUrls() {
         return {
-            "$": ["my-component.css"]
+            "$": ["bw-container.css"]
         };
     }
     static get properties() {
         return {
-            "first": {
+            "mg": {
                 "type": "string",
                 "mutable": false,
                 "complexType": {
@@ -42,17 +29,18 @@ export class MyComponent {
                     "references": {}
                 },
                 "required": false,
-                "optional": true,
+                "optional": false,
                 "docs": {
                     "tags": [],
-                    "text": "The first name"
+                    "text": ""
                 },
                 "getter": false,
                 "setter": false,
                 "reflect": false,
-                "attribute": "first"
+                "attribute": "mg",
+                "defaultValue": "\"0px\""
             },
-            "middle": {
+            "pd": {
                 "type": "string",
                 "mutable": false,
                 "complexType": {
@@ -61,34 +49,36 @@ export class MyComponent {
                     "references": {}
                 },
                 "required": false,
-                "optional": true,
+                "optional": false,
                 "docs": {
                     "tags": [],
-                    "text": "The middle name"
+                    "text": ""
                 },
                 "getter": false,
                 "setter": false,
                 "reflect": false,
-                "attribute": "middle"
+                "attribute": "pd",
+                "defaultValue": "\"10px\""
             },
-            "last": {
-                "type": "string",
+            "grid": {
+                "type": "boolean",
                 "mutable": false,
                 "complexType": {
-                    "original": "string",
-                    "resolved": "string",
+                    "original": "boolean",
+                    "resolved": "boolean",
                     "references": {}
                 },
                 "required": false,
-                "optional": true,
+                "optional": false,
                 "docs": {
                     "tags": [],
-                    "text": "The last name"
+                    "text": ""
                 },
                 "getter": false,
                 "setter": false,
                 "reflect": false,
-                "attribute": "last"
+                "attribute": "grid",
+                "defaultValue": "false"
             }
         };
     }

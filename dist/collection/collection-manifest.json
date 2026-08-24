@@ -1,6 +1,8 @@
 {
   "entries": [
     "components/bw-card/bw-card.js",
+    "components/bw-container/bw-container.js",
+    "components/bw-nav/bw-nav.js",
     "components/my-component/my-component.js"
   ],
   "mixins": [],

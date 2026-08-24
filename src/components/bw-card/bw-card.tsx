@@ -12,7 +12,7 @@ export class BwCard {
   @Prop() imgSrc: string = 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw';
   @Prop() imgAlt: string = 'Blackwall card image';
   
-  @Prop() title: string = 'Blackwall card';
+  @Prop() name: string = 'Blackwall card';
   
   @Prop() description: string = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!
           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.
@@ -38,7 +38,7 @@ export class BwCard {
       <div class="card">
         <img src={this.imgSrc} alt={this.imgAlt} class="card-img" />
         <div class="card-content">
-          <p class="card-title">{this.title}</p>
+          <p class="card-title">{this.name}</p>
           <div class="card-tags">
             <span class="card-tag-title">{this.tagTitle}</span>
             {this.tags.map((tag, index) => (

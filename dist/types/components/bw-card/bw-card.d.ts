@@ -7,7 +7,7 @@ export declare class BwCard {
     descriptionLength: number;
     tagTitle: string;
     tags: string[];
-    Link: string;
+    link: string;
     componentWillLoad(): void;
     getColorForTag(index: number): string;
     render(): any;

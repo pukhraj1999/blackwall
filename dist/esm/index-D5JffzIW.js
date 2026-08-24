@@ -1,5 +1,3 @@
-'use strict';
-
 const NAMESPACE = 'blackwall';
 const BUILD = /* blackwall */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", lazyLoad: true, propChangeCallback: false, state: true, updatable: true};
 
@@ -457,6 +455,25 @@ var parsePropertyValue = (propValue, propType, isFormAssociated) => {
   }
   return propValue;
 };
+var getElement = (ref) => {
+  var _a;
+  return (_a = getHostRef(ref)) == null ? void 0 : _a.$hostElement$ ;
+};
+
+// src/runtime/event-emitter.ts
+var createEvent = (ref, name, flags) => {
+  const elm = getElement(ref);
+  return {
+    emit: (detail) => {
+      return emitEvent(elm, name, {
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+        detail
+      });
+    }
+  };
+};
 var emitEvent = (elm, name, opts) => {
   const ev = plt.ce(name, opts);
   elm.dispatchEvent(ev);
@@ -467,7 +484,7 @@ var setAccessor = (elm, memberName, oldValue, newValue, isSvg, flags, initialRen
     return;
   }
   let isProp = isMemberInElement(elm, memberName);
-  memberName.toLowerCase();
+  let ln = memberName.toLowerCase();
   if (memberName === "class") {
     const classList = elm.classList;
     const oldClasses = parseClassList(oldValue);
@@ -497,7 +514,25 @@ var setAccessor = (elm, memberName, oldValue, newValue, isSvg, flags, initialRen
         }
       }
     }
-  } else if (memberName === "key") ; else if (memberName[0] === "a" && memberName.startsWith("attr:")) {
+  } else if (memberName === "key") ; else if ((!isProp ) && memberName[0] === "o" && memberName[1] === "n") {
+    if (memberName[2] === "-") {
+      memberName = memberName.slice(3);
+    } else if (isMemberInElement(win, ln)) {
+      memberName = ln.slice(2);
+    } else {
+      memberName = ln[2] + memberName.slice(3);
+    }
+    if (oldValue || newValue) {
+      const capture = memberName.endsWith(CAPTURE_EVENT_SUFFIX);
+      memberName = memberName.replace(CAPTURE_EVENT_REGEX, "");
+      if (oldValue) {
+        plt.rel(elm, memberName, oldValue, capture);
+      }
+      if (newValue) {
+        plt.ael(elm, memberName, newValue, capture);
+      }
+    }
+  } else if (memberName[0] === "a" && memberName.startsWith("attr:")) {
     const propName = memberName.slice(5);
     let attrName;
     {
@@ -574,6 +609,8 @@ var parseClassList = (value) => {
   }
   return value.split(parseClassListRegex);
 };
+var CAPTURE_EVENT_SUFFIX = "Capture";
+var CAPTURE_EVENT_REGEX = new RegExp(CAPTURE_EVENT_SUFFIX + "$");
 
 // src/runtime/vdom/update-element.ts
 var updateElement = (oldVnode, newVnode, isSvgMode2, isInitialRender) => {
@@ -1476,8 +1513,4 @@ function transformTag(tag) {
   return tag;
 }
 
-exports.bootstrapLazy = bootstrapLazy;
-exports.h = h;
-exports.promiseResolve = promiseResolve;
-exports.registerInstance = registerInstance;
-exports.setNonce = setNonce;
+export { bootstrapLazy as b, createEvent as c, h, promiseResolve as p, registerInstance as r, setNonce as s };

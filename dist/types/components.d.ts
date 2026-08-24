@@ -8,11 +8,17 @@ import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 import ILink from "./models/ILink";
 export { default as ILink } from "./models/ILink";
 export namespace Components {
-    interface BwCard {
+    interface BwBtn {
         /**
-          * @default '#'
+          * @default "#"
          */
-        "Link": string;
+        "link": string;
+        /**
+          * @default "Name"
+         */
+        "name": string;
+    }
+    interface BwCard {
         /**
           * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
          */
@@ -29,6 +35,10 @@ export namespace Components {
           * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
          */
         "imgSrc": string;
+        /**
+          * @default '#'
+         */
+        "link": string;
         /**
           * @default 'Blackwall card'
          */
@@ -56,9 +66,19 @@ export namespace Components {
          */
         "pd": string;
     }
+    interface BwModal {
+        /**
+          * @default false
+         */
+        "isOpen": boolean;
+        /**
+          * @default ''
+         */
+        "name": string;
+    }
     interface BwNav {
         /**
-          * @default {name:"Navbar", link:"#"}
+          * @default { name: 'Navbar', link: '#' }
          */
         "homeLink": ILink;
         /**
@@ -66,7 +86,7 @@ export namespace Components {
          */
         "mg": string;
         /**
-          * @default [     {name:"Search",link:"#"},     {name:"Manage",link:"#"},     {name:"About",link:"#"},     {name:"Profile",link:"#"}   ]
+          * @default [     { name: 'Search', link: '#' },     { name: 'Manage', link: '#' },     { name: 'About', link: '#' },     { name: 'Profile', link: '#' },   ]
          */
         "navLinks": Array<ILink>;
         /**
@@ -89,7 +109,17 @@ export namespace Components {
         "middle"?: string;
     }
 }
+export interface BwModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBwModalElement;
+}
 declare global {
+    interface HTMLBwBtnElement extends Components.BwBtn, HTMLStencilElement {
+    }
+    var HTMLBwBtnElement: {
+        prototype: HTMLBwBtnElement;
+        new (): HTMLBwBtnElement;
+    };
     interface HTMLBwCardElement extends Components.BwCard, HTMLStencilElement {
     }
     var HTMLBwCardElement: {
@@ -101,6 +131,23 @@ declare global {
     var HTMLBwContainerElement: {
         prototype: HTMLBwContainerElement;
         new (): HTMLBwContainerElement;
+    };
+    interface HTMLBwModalElementEventMap {
+        "modalClosed": void;
+    }
+    interface HTMLBwModalElement extends Components.BwModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLBwModalElementEventMap>(type: K, listener: (this: HTMLBwModalElement, ev: BwModalCustomEvent<HTMLBwModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLBwModalElementEventMap>(type: K, listener: (this: HTMLBwModalElement, ev: BwModalCustomEvent<HTMLBwModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLBwModalElement: {
+        prototype: HTMLBwModalElement;
+        new (): HTMLBwModalElement;
     };
     interface HTMLBwNavElement extends Components.BwNav, HTMLStencilElement {
     }
@@ -115,18 +162,26 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "bw-btn": HTMLBwBtnElement;
         "bw-card": HTMLBwCardElement;
         "bw-container": HTMLBwContainerElement;
+        "bw-modal": HTMLBwModalElement;
         "bw-nav": HTMLBwNavElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface BwCard {
+    interface BwBtn {
         /**
-          * @default '#'
+          * @default "#"
          */
-        "Link"?: string;
+        "link"?: string;
+        /**
+          * @default "Name"
+         */
+        "name"?: string;
+    }
+    interface BwCard {
         /**
           * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
          */
@@ -143,6 +198,10 @@ declare namespace LocalJSX {
           * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
          */
         "imgSrc"?: string;
+        /**
+          * @default '#'
+         */
+        "link"?: string;
         /**
           * @default 'Blackwall card'
          */
@@ -170,9 +229,20 @@ declare namespace LocalJSX {
          */
         "pd"?: string;
     }
+    interface BwModal {
+        /**
+          * @default false
+         */
+        "isOpen"?: boolean;
+        /**
+          * @default ''
+         */
+        "name"?: string;
+        "onModalClosed"?: (event: BwModalCustomEvent<void>) => void;
+    }
     interface BwNav {
         /**
-          * @default {name:"Navbar", link:"#"}
+          * @default { name: 'Navbar', link: '#' }
          */
         "homeLink"?: ILink;
         /**
@@ -180,7 +250,7 @@ declare namespace LocalJSX {
          */
         "mg"?: string;
         /**
-          * @default [     {name:"Search",link:"#"},     {name:"Manage",link:"#"},     {name:"About",link:"#"},     {name:"Profile",link:"#"}   ]
+          * @default [     { name: 'Search', link: '#' },     { name: 'Manage', link: '#' },     { name: 'About', link: '#' },     { name: 'Profile', link: '#' },   ]
          */
         "navLinks"?: Array<ILink>;
         /**
@@ -203,6 +273,10 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
 
+    interface BwBtnAttributes {
+        "name": string;
+        "link": string;
+    }
     interface BwCardAttributes {
         "imgSrc": string;
         "imgAlt": string;
@@ -210,12 +284,16 @@ declare namespace LocalJSX {
         "description": string;
         "descriptionLength": number;
         "tagTitle": string;
-        "Link": string;
+        "link": string;
     }
     interface BwContainerAttributes {
         "mg": string;
         "pd": string;
         "grid": boolean;
+    }
+    interface BwModalAttributes {
+        "isOpen": boolean;
+        "name": string;
     }
     interface BwNavAttributes {
         "mg": string;
@@ -228,8 +306,10 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "bw-btn": Omit<BwBtn, keyof BwBtnAttributes> & { [K in keyof BwBtn & keyof BwBtnAttributes]?: BwBtn[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `attr:${K}`]?: BwBtnAttributes[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `prop:${K}`]?: BwBtn[K] };
         "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] };
         "bw-container": Omit<BwContainer, keyof BwContainerAttributes> & { [K in keyof BwContainer & keyof BwContainerAttributes]?: BwContainer[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `attr:${K}`]?: BwContainerAttributes[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `prop:${K}`]?: BwContainer[K] };
+        "bw-modal": Omit<BwModal, keyof BwModalAttributes> & { [K in keyof BwModal & keyof BwModalAttributes]?: BwModal[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `attr:${K}`]?: BwModalAttributes[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `prop:${K}`]?: BwModal[K] };
         "bw-nav": Omit<BwNav, keyof BwNavAttributes> & { [K in keyof BwNav & keyof BwNavAttributes]?: BwNav[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `attr:${K}`]?: BwNavAttributes[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `prop:${K}`]?: BwNav[K] };
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
     }
@@ -238,8 +318,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "bw-btn": LocalJSX.IntrinsicElements["bw-btn"] & JSXBase.HTMLAttributes<HTMLBwBtnElement>;
             "bw-card": LocalJSX.IntrinsicElements["bw-card"] & JSXBase.HTMLAttributes<HTMLBwCardElement>;
             "bw-container": LocalJSX.IntrinsicElements["bw-container"] & JSXBase.HTMLAttributes<HTMLBwContainerElement>;
+            "bw-modal": LocalJSX.IntrinsicElements["bw-modal"] & JSXBase.HTMLAttributes<HTMLBwModalElement>;
             "bw-nav": LocalJSX.IntrinsicElements["bw-nav"] & JSXBase.HTMLAttributes<HTMLBwNavElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

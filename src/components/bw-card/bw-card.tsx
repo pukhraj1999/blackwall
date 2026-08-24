@@ -23,7 +23,7 @@ export class BwCard {
   
   @Prop() tagTitle: string = 'Tags:';
   @Prop() tags: string[] = ['Fast', 'Junk','Heavy','Vegie Loaded'];
-  @Prop() Link: string = '#';
+  @Prop() link: string = '#';
 
   componentWillLoad() {
     this.description = this.description.length > this.descriptionLength ? this.description.substring(0, this.descriptionLength) + '...' : this.description;
@@ -46,9 +46,7 @@ export class BwCard {
             ))}
           </div>
           <p class="card-description">{this.description}</p>
-          <div class="card-btn-box">
-            <a href={this.Link} class="card-btn">Learn More</a>
-          </div>
+          <bw-btn name="Learn More" link={this.link}></bw-btn>
         </div>
       </div>
     );

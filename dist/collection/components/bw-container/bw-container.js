@@ -4,7 +4,7 @@ export class BwContainer {
     pd = "10px";
     grid = false;
     render() {
-        return (h("main", { key: 'b19ad5eda922a81c1ad9be94ae2f69c978e4a99a', class: { "container": true, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '9b2c309104c22181aabd035d8dc7899b448c2b01' })));
+        return (h("main", { key: '8ccf8498d22724a33d2a2fafaba006ed9abaa534', class: { "container": true, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '23b8bd38885e3067f8d69e465685c13cefbf7730' })));
     }
     static get is() { return "bw-container"; }
     static get encapsulation() { return "shadow"; }

@@ -17,7 +17,7 @@ export class MyComponent {
         return format(this.first, this.middle, this.last);
     }
     render() {
-        return h("div", { key: '1160a6cf2976f0cc7e4f2650195d9cade849fe91' }, "Hello, World! I'm ", this.getText());
+        return h("div", { key: 'e1b21a89e20ce0e1ec8d3a26c5e2a4c204b7bc63' }, "Hello, World! I'm ", this.getText());
     }
     static get is() { return "my-component"; }
     static get encapsulation() { return "shadow"; }

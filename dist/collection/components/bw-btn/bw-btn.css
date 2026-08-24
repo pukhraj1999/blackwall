@@ -1,0 +1,29 @@
+:host {
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  display: block;
+}
+.btn-box{
+  display: grid;
+  margin-top: 5px;
+}
+.btn{
+  background-color: transparent;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  border: 2px solid white;
+  text-decoration: none;
+}
+.btn:hover{
+  background-color: white;
+  color: #24293b;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #24293b;
+}

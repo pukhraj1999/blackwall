@@ -12,7 +12,7 @@ export class BwCard {
     descriptionLength = 200;
     tagTitle = 'Tags:';
     tags = ['Fast', 'Junk', 'Heavy', 'Vegie Loaded'];
-    Link = '#';
+    link = '#';
     componentWillLoad() {
         this.description = this.description.length > this.descriptionLength ? this.description.substring(0, this.descriptionLength) + '...' : this.description;
     }
@@ -20,7 +20,7 @@ export class BwCard {
         return this.tagColors[index % this.tagColors.length];
     }
     render() {
-        return (h("div", { key: 'b7cd2d28eb41bc9cb8d0337a503a3491bfe3adfe', class: "card" }, h("img", { key: 'f4d7a796e19daf3b563fec6516bbe26ca1562bc6', src: this.imgSrc, alt: this.imgAlt, class: "card-img" }), h("div", { key: 'c416be572486fc37b7ecbf4ac1b9c4bcdbd089d9', class: "card-content" }, h("p", { key: 'a18ea00c82b304b64f9dcc4cfd3cc817b0cc52d3', class: "card-title" }, this.name), h("div", { key: 'e62c8b9f73bc549f8b8c4bac39b428c99d73c517', class: "card-tags" }, h("span", { key: '00ca676ce69b28d73c1beb0043ae97216f54718c', class: "card-tag-title" }, this.tagTitle), this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '93e774445a0106e34018c13ff14ec38846d510f3', class: "card-description" }, this.description), h("div", { key: '93bd017c94e65d75495609e0770cc23e49c202a0', class: "card-btn-box" }, h("a", { key: '7b7a873aee2434f0b5147d557df22a3757a338b9', href: this.Link, class: "card-btn" }, "Learn More")))));
+        return (h("div", { key: '313fc750cc1880cc00eafaaa46f430ec75ea9f06', class: "card" }, h("img", { key: 'd0b31edd97a8a74bd4dfe2b482d79497a87b93ea', src: this.imgSrc, alt: this.imgAlt, class: "card-img" }), h("div", { key: 'fff7131427e858e462e496fd62612e67ea6c2df0', class: "card-content" }, h("p", { key: 'a32b8d7edf2a8abdb5332d0917e7040aacf4dd50', class: "card-title" }, this.name), h("div", { key: 'b674a280a7aba68c57ebb5bae44ab0a67bdc889c', class: "card-tags" }, h("span", { key: 'fefdf23868393f4a8e799757ba49d1ae95e17f68', class: "card-tag-title" }, this.tagTitle), this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '185ee9baac5bf3255eab8825c1a4abaa59217303', class: "card-description" }, this.description), h("bw-btn", { key: '1511aaaab4611142ce7dff6f4795379c76b2f031', name: "Learn More", link: this.link }))));
     }
     static get is() { return "bw-card"; }
     static get encapsulation() { return "shadow"; }
@@ -174,7 +174,7 @@ export class BwCard {
                 "setter": false,
                 "defaultValue": "['Fast', 'Junk','Heavy','Vegie Loaded']"
             },
-            "Link": {
+            "link": {
                 "type": "string",
                 "mutable": false,
                 "complexType": {

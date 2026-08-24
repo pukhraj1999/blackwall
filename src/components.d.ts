@@ -28,6 +28,10 @@ export namespace Components {
          */
         "imgSrc": string;
         /**
+          * @default 'Blackwall card'
+         */
+        "name": string;
+        /**
           * @default 'Tags:'
          */
         "tagTitle": string;
@@ -35,10 +39,6 @@ export namespace Components {
           * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
          */
         "tags": string[];
-        /**
-          * @default 'Blackwall card'
-         */
-        "title": string;
     }
     interface MyComponent {
         /**
@@ -96,6 +96,10 @@ declare namespace LocalJSX {
          */
         "imgSrc"?: string;
         /**
+          * @default 'Blackwall card'
+         */
+        "name"?: string;
+        /**
           * @default 'Tags:'
          */
         "tagTitle"?: string;
@@ -103,10 +107,6 @@ declare namespace LocalJSX {
           * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
          */
         "tags"?: string[];
-        /**
-          * @default 'Blackwall card'
-         */
-        "title"?: string;
     }
     interface MyComponent {
         /**
@@ -126,7 +126,7 @@ declare namespace LocalJSX {
     interface BwCardAttributes {
         "imgSrc": string;
         "imgAlt": string;
-        "title": string;
+        "name": string;
         "description": string;
         "descriptionLength": number;
         "tagTitle": string;

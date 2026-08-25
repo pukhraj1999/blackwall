@@ -58,6 +58,52 @@ export namespace Components {
           * @default "10px"
          */
         "pd": string;
+        /**
+          * @default false
+         */
+        "primary": boolean;
+    }
+    interface BwInput {
+        /**
+          * @default '0px'
+         */
+        "boxMg": string;
+        "boxMgH": string;
+        "boxMgV": string;
+        /**
+          * @default '0px'
+         */
+        "boxPd": string;
+        "boxPdH": string;
+        "boxPdV": string;
+        /**
+          * @default 'Name'
+         */
+        "label": string;
+        /**
+          * @default false
+         */
+        "labelBold": boolean;
+        /**
+          * @default '1.5rem'
+         */
+        "labelSize": string;
+        /**
+          * @default '0px'
+         */
+        "mg": string;
+        /**
+          * @default '5px'
+         */
+        "pd": string;
+        /**
+          * @default 'Type Something'
+         */
+        "placeholder": string;
+        /**
+          * @default '1rem'
+         */
+        "size": string;
     }
     interface BwModal {
         /**
@@ -140,6 +186,12 @@ declare global {
         prototype: HTMLBwContainerElement;
         new (): HTMLBwContainerElement;
     };
+    interface HTMLBwInputElement extends Components.BwInput, HTMLStencilElement {
+    }
+    var HTMLBwInputElement: {
+        prototype: HTMLBwInputElement;
+        new (): HTMLBwInputElement;
+    };
     interface HTMLBwModalElementEventMap {
         "modalClosed": void;
     }
@@ -173,6 +225,7 @@ declare global {
         "bw-btn": HTMLBwBtnElement;
         "bw-card": HTMLBwCardElement;
         "bw-container": HTMLBwContainerElement;
+        "bw-input": HTMLBwInputElement;
         "bw-modal": HTMLBwModalElement;
         "bw-nav": HTMLBwNavElement;
         "my-component": HTMLMyComponentElement;
@@ -232,6 +285,52 @@ declare namespace LocalJSX {
           * @default "10px"
          */
         "pd"?: string;
+        /**
+          * @default false
+         */
+        "primary"?: boolean;
+    }
+    interface BwInput {
+        /**
+          * @default '0px'
+         */
+        "boxMg"?: string;
+        "boxMgH": string;
+        "boxMgV": string;
+        /**
+          * @default '0px'
+         */
+        "boxPd"?: string;
+        "boxPdH": string;
+        "boxPdV": string;
+        /**
+          * @default 'Name'
+         */
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "labelBold"?: boolean;
+        /**
+          * @default '1.5rem'
+         */
+        "labelSize"?: string;
+        /**
+          * @default '0px'
+         */
+        "mg"?: string;
+        /**
+          * @default '5px'
+         */
+        "pd"?: string;
+        /**
+          * @default 'Type Something'
+         */
+        "placeholder"?: string;
+        /**
+          * @default '1rem'
+         */
+        "size"?: string;
     }
     interface BwModal {
         /**
@@ -295,7 +394,23 @@ declare namespace LocalJSX {
     interface BwContainerAttributes {
         "mg": string;
         "pd": string;
+        "primary": boolean;
         "grid": boolean;
+    }
+    interface BwInputAttributes {
+        "boxMg": string;
+        "boxMgH": string;
+        "boxMgV": string;
+        "boxPd": string;
+        "boxPdH": string;
+        "boxPdV": string;
+        "mg": string;
+        "pd": string;
+        "size": string;
+        "labelSize": string;
+        "labelBold": boolean;
+        "label": string;
+        "placeholder": string;
     }
     interface BwModalAttributes {
         "isOpen": boolean;
@@ -315,6 +430,7 @@ declare namespace LocalJSX {
         "bw-btn": Omit<BwBtn, keyof BwBtnAttributes> & { [K in keyof BwBtn & keyof BwBtnAttributes]?: BwBtn[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `attr:${K}`]?: BwBtnAttributes[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `prop:${K}`]?: BwBtn[K] };
         "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] } & OneOf<"imgSrc", BwCard["imgSrc"], BwCardAttributes["imgSrc"]> & OneOf<"imgAlt", BwCard["imgAlt"], BwCardAttributes["imgAlt"]> & OneOf<"name", BwCard["name"], BwCardAttributes["name"]> & OneOf<"description", BwCard["description"], BwCardAttributes["description"]>;
         "bw-container": Omit<BwContainer, keyof BwContainerAttributes> & { [K in keyof BwContainer & keyof BwContainerAttributes]?: BwContainer[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `attr:${K}`]?: BwContainerAttributes[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `prop:${K}`]?: BwContainer[K] };
+        "bw-input": Omit<BwInput, keyof BwInputAttributes> & { [K in keyof BwInput & keyof BwInputAttributes]?: BwInput[K] } & { [K in keyof BwInput & keyof BwInputAttributes as `attr:${K}`]?: BwInputAttributes[K] } & { [K in keyof BwInput & keyof BwInputAttributes as `prop:${K}`]?: BwInput[K] } & OneOf<"boxMgH", BwInput["boxMgH"], BwInputAttributes["boxMgH"]> & OneOf<"boxMgV", BwInput["boxMgV"], BwInputAttributes["boxMgV"]> & OneOf<"boxPdH", BwInput["boxPdH"], BwInputAttributes["boxPdH"]> & OneOf<"boxPdV", BwInput["boxPdV"], BwInputAttributes["boxPdV"]>;
         "bw-modal": Omit<BwModal, keyof BwModalAttributes> & { [K in keyof BwModal & keyof BwModalAttributes]?: BwModal[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `attr:${K}`]?: BwModalAttributes[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `prop:${K}`]?: BwModal[K] };
         "bw-nav": Omit<BwNav, keyof BwNavAttributes> & { [K in keyof BwNav & keyof BwNavAttributes]?: BwNav[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `attr:${K}`]?: BwNavAttributes[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `prop:${K}`]?: BwNav[K] };
         "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
@@ -327,6 +443,7 @@ declare module "@stencil/core" {
             "bw-btn": LocalJSX.IntrinsicElements["bw-btn"] & JSXBase.HTMLAttributes<HTMLBwBtnElement>;
             "bw-card": LocalJSX.IntrinsicElements["bw-card"] & JSXBase.HTMLAttributes<HTMLBwCardElement>;
             "bw-container": LocalJSX.IntrinsicElements["bw-container"] & JSXBase.HTMLAttributes<HTMLBwContainerElement>;
+            "bw-input": LocalJSX.IntrinsicElements["bw-input"] & JSXBase.HTMLAttributes<HTMLBwInputElement>;
             "bw-modal": LocalJSX.IntrinsicElements["bw-modal"] & JSXBase.HTMLAttributes<HTMLBwModalElement>;
             "bw-nav": LocalJSX.IntrinsicElements["bw-nav"] & JSXBase.HTMLAttributes<HTMLBwNavElement>;
             "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

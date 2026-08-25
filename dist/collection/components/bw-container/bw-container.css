@@ -8,7 +8,13 @@
 }
 
 .container {
+  color: white;
   background-color: #151723;
+}
+
+.primary{
+  color: white;
+  background-color: #24293b;;
 }
 
 .container-grid {

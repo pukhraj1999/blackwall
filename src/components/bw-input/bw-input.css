@@ -1,0 +1,28 @@
+:host {
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  display: block;
+}
+
+.label-bold{
+  font-weight: bold;
+}
+.input-box{
+  width: 100%;
+  display: grid;
+}
+.input{
+  outline: none;
+}
+.input-error{
+  outline: 2px solid rgb(240, 49, 49);
+  color: rgb(240, 49, 49);
+}
+.error-msg{
+  margin-top: 2px;
+  font-size: 1.05rem;
+  color: rgb(240, 49, 49);
+}

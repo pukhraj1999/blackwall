@@ -20,13 +20,22 @@
   </head>
   <body>
     <bw-nav></bw-nav>
-    <bw-container grid="true">
+    <!-- <bw-container grid="true">
         <bw-card populate="true"></bw-card>
         <bw-card populate="true"></bw-card>
         <bw-card populate="true"></bw-card>
         <bw-card populate="true"></bw-card>
         <bw-card populate="true"></bw-card>
         <bw-card populate="true"></bw-card>
+    </bw-container> -->
+    <bw-container pd="2rem">
+      <bw-container pd="2rem" primary="true">
+        <bw-input label="Name" size="1.4rem" label-size="1.6rem"  box-mg-v="1rem" label-bold="true"></bw-input>
+        <bw-input label="Email" size="1.4rem" label-size="1.6rem" box-mg-v="1rem" label-bold="true"></bw-input>
+        <bw-input label="Password" size="1.4rem" label-size="1.6rem" box-mg-v="1rem" label-bold="true"></bw-input>
+        <bw-input label="Confirm Password" size="1.4rem" label-size="1.6rem" box-mg-v="1rem" label-bold="true"></bw-input>
+        <bw-btn name="Submit"></bw-btn>
+      </bw-container>
     </bw-container>
   </body>
 </html>

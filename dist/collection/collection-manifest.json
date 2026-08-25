@@ -3,6 +3,7 @@
     "components/bw-btn/bw-btn.js",
     "components/bw-card/bw-card.js",
     "components/bw-container/bw-container.js",
+    "components/bw-input/bw-input.js",
     "components/bw-modal/bw-modal.js",
     "components/bw-nav/bw-nav.js",
     "components/my-component/my-component.js"

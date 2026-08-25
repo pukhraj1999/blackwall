@@ -35,8 +35,12 @@ a{
   letter-spacing: 1px;
   border: 4px solid transparent;
 }
-.right-link:hovers{
+.right-link:hover{
+  color:#24293b;
+  background-color: white;
   border: 4px solid #151723;
+  font-weight: bold;
+  transition: 0.3s all ease-in-out;
 }
 .mobile-right{
   display: none;

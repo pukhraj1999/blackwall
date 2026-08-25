@@ -2,9 +2,11 @@ import { h } from "@stencil/core";
 export class BwContainer {
     mg = "0px";
     pd = "10px";
+    // Default container is secondary
+    primary = false;
     grid = false;
     render() {
-        return (h("main", { key: '8ccf8498d22724a33d2a2fafaba006ed9abaa534', class: { "container": true, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '23b8bd38885e3067f8d69e465685c13cefbf7730' })));
+        return (h("main", { key: '0075b6950189321fd911a03cec91a7c43ed30580', class: { "container": true, "primary": this.primary, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '936f3bae96215570b0f44285ad71543a88959f3d' })));
     }
     static get is() { return "bw-container"; }
     static get encapsulation() { return "shadow"; }
@@ -59,6 +61,26 @@ export class BwContainer {
                 "reflect": false,
                 "attribute": "pd",
                 "defaultValue": "\"10px\""
+            },
+            "primary": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "primary",
+                "defaultValue": "false"
             },
             "grid": {
                 "type": "boolean",

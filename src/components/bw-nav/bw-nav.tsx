@@ -54,7 +54,7 @@ export class BwNav {
         <bw-modal isOpen={this.isModalOpen} onModalClosed={() => (this.isModalOpen = false)}>
           <div class="mobile-link-box">
             {this.links.map(({ name, link }) => (
-              <bw-btn name={name} link={link}></bw-btn>
+              <bw-btn name={name} link={link} onClick={() => this.isModalOpen = false}></bw-btn>
             ))}
           </div>
         </bw-modal>

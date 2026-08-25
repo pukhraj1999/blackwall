@@ -19,37 +19,30 @@ export namespace Components {
         "name": string;
     }
     interface BwCard {
-        /**
-          * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
-         */
         "description": string;
         /**
           * @default 200
          */
         "descriptionLength": number;
-        /**
-          * @default 'Blackwall card image'
-         */
         "imgAlt": string;
-        /**
-          * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
-         */
         "imgSrc": string;
         /**
           * @default '#'
          */
         "link": string;
-        /**
-          * @default 'Blackwall card'
-         */
         "name": string;
+        /**
+          * @default true
+         */
+        "populate": boolean;
+        /**
+          * @default true
+         */
+        "showBtn": boolean;
         /**
           * @default 'Tags:'
          */
         "tagTitle": string;
-        /**
-          * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
-         */
         "tags": string[];
     }
     interface BwContainer {
@@ -109,12 +102,27 @@ export namespace Components {
         "middle"?: string;
     }
 }
+export interface BwBtnCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBwBtnElement;
+}
 export interface BwModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLBwModalElement;
 }
 declare global {
+    interface HTMLBwBtnElementEventMap {
+        "Click": void;
+    }
     interface HTMLBwBtnElement extends Components.BwBtn, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLBwBtnElementEventMap>(type: K, listener: (this: HTMLBwBtnElement, ev: BwBtnCustomEvent<HTMLBwBtnElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLBwBtnElementEventMap>(type: K, listener: (this: HTMLBwBtnElement, ev: BwBtnCustomEvent<HTMLBwBtnElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLBwBtnElement: {
         prototype: HTMLBwBtnElement;
@@ -171,6 +179,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
+
     interface BwBtn {
         /**
           * @default "#"
@@ -180,40 +190,34 @@ declare namespace LocalJSX {
           * @default "Name"
          */
         "name"?: string;
+        "onClick"?: (event: BwBtnCustomEvent<void>) => void;
     }
     interface BwCard {
-        /**
-          * @default `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`
-         */
-        "description"?: string;
+        "description": string;
         /**
           * @default 200
          */
         "descriptionLength"?: number;
-        /**
-          * @default 'Blackwall card image'
-         */
-        "imgAlt"?: string;
-        /**
-          * @default 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw'
-         */
-        "imgSrc"?: string;
+        "imgAlt": string;
+        "imgSrc": string;
         /**
           * @default '#'
          */
         "link"?: string;
+        "name": string;
         /**
-          * @default 'Blackwall card'
+          * @default true
          */
-        "name"?: string;
+        "populate"?: boolean;
+        /**
+          * @default true
+         */
+        "showBtn"?: boolean;
         /**
           * @default 'Tags:'
          */
         "tagTitle"?: string;
-        /**
-          * @default ['Fast', 'Junk','Heavy','Vegie Loaded']
-         */
-        "tags"?: string[];
+        "tags": string[];
     }
     interface BwContainer {
         /**
@@ -278,8 +282,10 @@ declare namespace LocalJSX {
         "link": string;
     }
     interface BwCardAttributes {
+        "populate": boolean;
         "imgSrc": string;
         "imgAlt": string;
+        "showBtn": boolean;
         "name": string;
         "description": string;
         "descriptionLength": number;
@@ -307,7 +313,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "bw-btn": Omit<BwBtn, keyof BwBtnAttributes> & { [K in keyof BwBtn & keyof BwBtnAttributes]?: BwBtn[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `attr:${K}`]?: BwBtnAttributes[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `prop:${K}`]?: BwBtn[K] };
-        "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] };
+        "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] } & OneOf<"imgSrc", BwCard["imgSrc"], BwCardAttributes["imgSrc"]> & OneOf<"imgAlt", BwCard["imgAlt"], BwCardAttributes["imgAlt"]> & OneOf<"name", BwCard["name"], BwCardAttributes["name"]> & OneOf<"description", BwCard["description"], BwCardAttributes["description"]>;
         "bw-container": Omit<BwContainer, keyof BwContainerAttributes> & { [K in keyof BwContainer & keyof BwContainerAttributes]?: BwContainer[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `attr:${K}`]?: BwContainerAttributes[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `prop:${K}`]?: BwContainer[K] };
         "bw-modal": Omit<BwModal, keyof BwModalAttributes> & { [K in keyof BwModal & keyof BwModalAttributes]?: BwModal[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `attr:${K}`]?: BwModalAttributes[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `prop:${K}`]?: BwModal[K] };
         "bw-nav": Omit<BwNav, keyof BwNavAttributes> & { [K in keyof BwNav & keyof BwNavAttributes]?: BwNav[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `attr:${K}`]?: BwNavAttributes[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `prop:${K}`]?: BwNav[K] };

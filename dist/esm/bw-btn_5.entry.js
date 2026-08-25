@@ -1,15 +1,20 @@
-import { r as registerInstance, h, c as createEvent } from './index-D5JffzIW.js';
+import { r as registerInstance, c as createEvent, h } from './index-D5JffzIW.js';
 
 const bwBtnCss = () => `:host {   *{     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; } .btn-box{   display: grid;   margin-top: 5px; } .btn{   background-color: transparent;   color: white;   font-size: 1.25rem;   font-weight: bold;   padding: 10px 20px;   text-align: center;   letter-spacing: 1px;   border: 2px solid white;   text-decoration: none; } .btn:hover{   background-color: white;   color: #24293b;   transition: all 0.3s ease-in-out;   border: 2px solid #24293b; }`;
 
 const BwBtn = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
+        this.Click = createEvent(this, "Click");
     }
     name = "Name";
     link = "#";
+    Click;
+    performAction = () => {
+        this.Click.emit();
+    };
     render() {
-        return (h("div", { key: '1b94c399148d42ea853d9080dccd97b4a12c0f74', class: "btn-box" }, h("a", { key: '594cbf420c7a17ccbecd1d0a0394711a40465199', href: this.link, class: "btn" }, this.name)));
+        return (h("div", { key: 'fc94608cf1bc84fbdd589ed2d4960abec3f75200', class: "btn-box" }, h("a", { key: '65de8d58ba767d43d1038c9f109b00fcfde24ad1', href: this.link, class: "btn", onClick: this.performAction }, this.name)));
     }
 };
 BwBtn.style = bwBtnCss();
@@ -20,27 +25,56 @@ const BwCard = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
     }
+    setPopulate;
+    setDescription;
     tagColors = ["rgb(193, 31, 63)", "rgb(34, 64, 183)", "rgb(203, 142, 10)", "rgb(25, 84, 33)", "rgb(191, 23, 221)"];
-    imgSrc = 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw';
-    imgAlt = 'Blackwall card image';
-    name = 'Blackwall card';
-    description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!
+    populate = true;
+    imgSrc;
+    imgAlt;
+    showBtn = true;
+    name;
+    description;
+    descriptionLength = 200;
+    tagTitle = 'Tags:';
+    tags;
+    link = '#';
+    componentWillLoad() {
+        // Updating the state
+        this.setPopulate = this.populate;
+        // Populating the props
+        if (this.setPopulate) {
+            if (!this.imgSrc) {
+                this.imgSrc = 'https://images.pexels.com/photos/8162589/pexels-photo-8162589.jpeg?_gl=1*bpmwgc*_ga*OTY5NTU4NTMzLjE3ODc1MDcwMDk.*_ga_8JE65Q40S6*czE3ODc1MDcwMDkkbzEkZzEkdDE3ODc1MDcwNTkkajEwJGwwJGgw';
+            }
+            if (!this.imgAlt) {
+                this.imgAlt = 'Blackwall card image';
+            }
+            if (!this.name) {
+                this.name = 'Blackwall card';
+            }
+            if (!this.description) {
+                this.description = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. At eos animi impedit natus, non corrupti iste, voluptas ut asperiores saepe architecto veritatis quos doloribus inventore laudantium suscipit sequi? Laudantium, repellat!
           Architecto ex modi, sed non voluptatum ut iusto quaerat quia deserunt quibusdam. Ad voluptas exercitationem voluptatum labore expedita inventore, ea voluptate ut incidunt! Natus sed debitis quos amet atque laboriosam.
           Mollitia impedit recusandae, optio reprehenderit voluptates quidem dolorem non omnis rem nostrum sint odio ullam sequi animi quis dolor id voluptatum minima. Eveniet, alias possimus ab neque iste animi totam!
           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.
           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`;
-    descriptionLength = 200;
-    tagTitle = 'Tags:';
-    tags = ['Fast', 'Junk', 'Heavy', 'Vegie Loaded'];
-    link = '#';
-    componentWillLoad() {
-        this.description = this.description.length > this.descriptionLength ? this.description.substring(0, this.descriptionLength) + '...' : this.description;
+            }
+            if (!this.tags) {
+                this.tags = ['Fast', 'Junk', 'Heavy', 'Vegie Loaded'];
+            }
+        }
+        if (this.description) {
+            // Updating the state
+            this.setDescription = this.description;
+            // Adjusting the length
+            this.setDescription = this.setDescription.length > this.descriptionLength ? this.setDescription.substring(0, this.descriptionLength) + '...' : this.setDescription;
+        }
     }
     getColorForTag(index) {
         return this.tagColors[index % this.tagColors.length];
     }
     render() {
-        return (h("div", { key: '313fc750cc1880cc00eafaaa46f430ec75ea9f06', class: "card" }, h("img", { key: 'd0b31edd97a8a74bd4dfe2b482d79497a87b93ea', src: this.imgSrc, alt: this.imgAlt, class: "card-img" }), h("div", { key: 'fff7131427e858e462e496fd62612e67ea6c2df0', class: "card-content" }, h("p", { key: 'a32b8d7edf2a8abdb5332d0917e7040aacf4dd50', class: "card-title" }, this.name), h("div", { key: 'b674a280a7aba68c57ebb5bae44ab0a67bdc889c', class: "card-tags" }, h("span", { key: 'fefdf23868393f4a8e799757ba49d1ae95e17f68', class: "card-tag-title" }, this.tagTitle), this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '185ee9baac5bf3255eab8825c1a4abaa59217303', class: "card-description" }, this.description), h("bw-btn", { key: '1511aaaab4611142ce7dff6f4795379c76b2f031', name: "Learn More", link: this.link }))));
+        return (h("div", { key: '4854c18f4781401ea343f29fe2d4ccffd763bd46', class: "card" }, h("img", { key: '149c32b9d932262ecc51f9c160ad160172696f19', src: this.imgSrc || '', alt: this.imgAlt || '', class: "card-img" }), h("div", { key: 'b224d68fa9b0f69fdf0561a2dc667aa2047ec669', class: "card-content" }, h("p", { key: '202bd12d24ae6d6d6808d359133efc6f03692cf8', class: "card-title" }, this.name || ""), h("div", { key: '5952a03c00b13b8448c4b6a2ad0f9f882f138d55', class: "card-tags" }, h("span", { key: 'f78fb685c3e93cf09bd429cbd5ff535efcb98273', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '5a5f6deac711cb7e7e0d2e84e1bc63e9b0ffa4d6', class: "card-description" }, this.setDescription || ''), this.showBtn && h("bw-btn", { key: 'e0e81ba2c17a16593b3b5c5eed92d1d92b6e0b20', name: "Learn More", link: this.link || '#' }))));
     }
 };
 BwCard.style = bwCardCss();
@@ -108,7 +142,7 @@ const BwNav = class {
         this.isModalOpen = true;
     };
     render() {
-        return (h("section", { key: '570b9af558e94729087ac120c273a4982158dd08' }, h("nav", { key: '4c6845a5e1690fb629d14be918e453782b31f552', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, h("div", { key: 'a125ebee4a74071f7f1f897cf161f64558236688', class: "left" }, h("a", { key: 'e9a9b94d6e3cf9b61ec464d7eaafcf7a321fe515', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), h("div", { key: '9b38028805ed3063ab0cd64f70ec8b7f33405e23', class: "mid" }), h("div", { key: 'f0d630696069c279b3f47abf1c7e83409f88c9f9', class: "right" }, this.links.map(({ name, link }) => (h("a", { class: "right-link", href: link }, name)))), h("div", { key: 'a848dcab0b27b985a0c617da3f16cdb43f0ad4de', class: "mobile-right" }, h("img", { key: 'c6b9ba4951ba3ed55ec9692f48935009018d2573', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), h("bw-modal", { key: 'fac4d4e9460df5b7606bc09c11251b50cc598be6', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, h("div", { key: '3e2d2ebfbb1a636e0ee3b4ba2e1704866e4afed3', class: "mobile-link-box" }, this.links.map(({ name, link }) => (h("bw-btn", { name: name, link: link })))))));
+        return (h("section", { key: '570b9af558e94729087ac120c273a4982158dd08' }, h("nav", { key: '4c6845a5e1690fb629d14be918e453782b31f552', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, h("div", { key: 'a125ebee4a74071f7f1f897cf161f64558236688', class: "left" }, h("a", { key: 'e9a9b94d6e3cf9b61ec464d7eaafcf7a321fe515', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), h("div", { key: '9b38028805ed3063ab0cd64f70ec8b7f33405e23', class: "mid" }), h("div", { key: 'f0d630696069c279b3f47abf1c7e83409f88c9f9', class: "right" }, this.links.map(({ name, link }) => (h("a", { class: "right-link", href: link }, name)))), h("div", { key: 'a848dcab0b27b985a0c617da3f16cdb43f0ad4de', class: "mobile-right" }, h("img", { key: 'c6b9ba4951ba3ed55ec9692f48935009018d2573', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), h("bw-modal", { key: 'fac4d4e9460df5b7606bc09c11251b50cc598be6', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, h("div", { key: '3e2d2ebfbb1a636e0ee3b4ba2e1704866e4afed3', class: "mobile-link-box" }, this.links.map(({ name, link }) => (h("bw-btn", { name: name, link: link, onClick: () => this.isModalOpen = false })))))));
     }
 };
 BwNav.style = bwNavCss();

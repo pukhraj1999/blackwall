@@ -13,6 +13,13 @@
 | `name`   | `name`    |             | `string` | `"Name"` |
 
 
+## Events
+
+| Event   | Description | Type                |
+| ------- | ----------- | ------------------- |
+| `Click` |             | `CustomEvent<void>` |
+
+
 ## Dependencies
 
 ### Used by

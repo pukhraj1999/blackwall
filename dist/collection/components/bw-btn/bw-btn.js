@@ -2,8 +2,12 @@ import { h } from "@stencil/core";
 export class BwBtn {
     name = "Name";
     link = "#";
+    Click;
+    performAction = () => {
+        this.Click.emit();
+    };
     render() {
-        return (h("div", { key: '1b94c399148d42ea853d9080dccd97b4a12c0f74', class: "btn-box" }, h("a", { key: '594cbf420c7a17ccbecd1d0a0394711a40465199', href: this.link, class: "btn" }, this.name)));
+        return (h("div", { key: 'fc94608cf1bc84fbdd589ed2d4960abec3f75200', class: "btn-box" }, h("a", { key: '65de8d58ba767d43d1038c9f109b00fcfde24ad1', href: this.link, class: "btn", onClick: this.performAction }, this.name)));
     }
     static get is() { return "bw-btn"; }
     static get encapsulation() { return "shadow"; }
@@ -60,5 +64,23 @@ export class BwBtn {
                 "defaultValue": "\"#\""
             }
         };
+    }
+    static get events() {
+        return [{
+                "method": "Click",
+                "name": "Click",
+                "bubbles": true,
+                "cancelable": true,
+                "composed": true,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "complexType": {
+                    "original": "void",
+                    "resolved": "void",
+                    "references": {}
+                }
+            }];
     }
 }

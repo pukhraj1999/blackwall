@@ -1,6 +1,6 @@
 'use strict';
 
-var index = require('./index-HhUyBnhQ.js');
+var index = require('./index-DEP0cWTe.js');
 
 const bwBtnCss = () => `:host {   *{     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; } .btn-box{   display: grid;   margin-top: 5px; } .btn{   background-color: transparent;   color: white;   font-size: 1.25rem;   font-weight: bold;   padding: 10px 20px;   text-align: center;   letter-spacing: 1px;   border: 2px solid white;   text-decoration: none; } .btn:hover{   background-color: white;   color: #24293b;   transition: all 0.3s ease-in-out;   border: 2px solid #24293b; }`;
 
@@ -43,6 +43,7 @@ const bwInputCss = () => `:host {   *{     margin: 0;     padding: 0;     box-si
 const BwInput = class {
     constructor(hostRef) {
         index.registerInstance(this, hostRef);
+        this.changedValue = index.createEvent(this, "changedValue");
     }
     isError = false;
     value = '';
@@ -60,9 +61,19 @@ const BwInput = class {
     labelSize = '1.5rem';
     labelBold = false;
     label = 'Name';
+    type = 'type';
     placeholder = 'Type Something';
+    // For Text Area
+    textarea = false;
+    row = 5;
+    col = 5;
+    changedValue;
+    valueChanged(newValue, oldValue) {
+        // react to the change
+        this.changedValue.emit({ oldValue, newValue });
+    }
     render() {
-        return (index.h("div", { key: '15313d6745e29e93823685713dc0d8294a1e7f65', class: "input-box", style: {
+        return (index.h("div", { key: 'b818bec9c380785ffc23137a550279446967053f', class: "input-box", style: {
                 margin: this.boxMg,
                 marginTop: this.boxMgV || this.boxMg,
                 marginBottom: this.boxMgV || this.boxMg,
@@ -73,21 +84,33 @@ const BwInput = class {
                 paddingBottom: this.boxPdV || this.boxPd,
                 paddingLeft: this.boxPdH || this.boxPd,
                 paddingRight: this.boxPdH || this.boxPd,
-            } }, index.h("p", { key: '978a1faed388671ccd65b4e29666027d21547b88', class: {
+            } }, index.h("p", { key: 'f0000b6237a70a14cbca9354bdd6274fcb19f950', class: {
                 'label-bold': this.labelBold,
             }, style: {
                 fontSize: this.labelSize,
-            } }, this.label), index.h("input", { key: '63f1380ca877655ed738fe3772a410a8d06b1203', style: {
+            } }, this.label), !this.textarea && (index.h("input", { key: '4b12dc4bbdd2b949599cb396c694cbc4faee3751', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, type: "text", placeholder: this.placeholder, disabled: this.isDisabled, required: this.isRequired }), this.isError && (index.h("p", { key: 'e8104eab175a633cb33ce8e906b4dd5fab677c7d', class: {
+            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (index.h("textarea", { key: '14f9bf38b89ba2f722847d750ccfd62e1c9ececa', style: {
+                margin: this.mg,
+                padding: this.pd,
+                fontSize: this.size,
+            }, class: {
+                'input': true,
+                'input-error': this.isError,
+            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (index.h("p", { key: '20f41dca493690afbf0ca3d2d700493180ff1446', class: {
                 'error-msg': true,
             } }, "This is error message"))));
     }
+    static get watchers() { return {
+        "value": [{
+                "valueChanged": 0
+            }]
+    }; }
 };
 BwInput.style = bwInputCss();
 
@@ -139,7 +162,7 @@ const BwNav = class {
         this.isModalOpen = true;
     };
     render() {
-        return (index.h("section", { key: '5ffe1ebfd323aeaee7f58fec41846c8cfb2d3172' }, index.h("nav", { key: '3f22d07e9d2ab1dd649d41ba27f920adbc593b99', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: '75dfd201f8cb4c21e91d63d8fb623980b861fe44', class: "left" }, index.h("a", { key: '3d8264e1859db7d64d6217d05668cb0d3c7be800', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: 'ab0359206623665e0548daf907bb5dc3612fd7ca', class: "mid" }), index.h("div", { key: '66dbadda7c0e1bf3e485fadd627b73fb7702f858', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: 'dcf1d076aee47ef8f9ffaaf5433af3531d79baae', class: "mobile-right" }, index.h("img", { key: '2d9e39eb42d9f072d55855dbe9f6f3ec8cee963e', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: 'ae2f12535b1eb7b58730f3d861f1d78cbc2e1e7a', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: 'd8b8acf3c5d718d05f127bcb47ec882a047705d8', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onClick: () => this.isModalOpen = false })))))));
+        return (index.h("section", { key: '06010e83331cb270241583bcb30f2ab389b9f98d' }, index.h("nav", { key: 'b33310f4ce9fe3dd9f0347bf33be10273a194861', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: 'e7c9c94038f9f11eb5f05261c1785a67bbb29a41', class: "left" }, index.h("a", { key: '6b4208e181618af953bcd7c07c39bfc9fe7afb6e', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: 'ec77d93b338e739613281af02431f6c152a1e716', class: "mid" }), index.h("div", { key: 'be1b9be45787a7a0c7b74842fa47490b81dd0c37', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: 'dfbeaee9caacdb532a720c6304f2e92cb2892e2c', class: "mobile-right" }, index.h("img", { key: 'f3323dfd5be2e72e112b0b774bfbbd72a126af5a', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: '4bc0ca7a4d6992a4aa7ba9b92a3c5e8d24f7ba31', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: 'e8aab885539c1a315990d692a4fb51878cdb833f', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onClick: () => this.isModalOpen = false })))))));
     }
 };
 BwNav.style = bwNavCss();

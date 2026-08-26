@@ -1,6 +1,6 @@
 'use strict';
 
-var index = require('./index-HhUyBnhQ.js');
+var index = require('./index-DEP0cWTe.js');
 var index$1 = require('./index.cjs.js');
 
 const myComponentCss = () => `:host{display:block}`;
@@ -25,7 +25,7 @@ const MyComponent = class {
         return index$1.format(this.first, this.middle, this.last);
     }
     render() {
-        return index.h("div", { key: 'edcd595f3b87cfa751442fba79e07a8823826cbc' }, "Hello, World! I'm ", this.getText());
+        return index.h("div", { key: 'a578ca5fdafb73e836f760d46224025304c6afc7' }, "Hello, World! I'm ", this.getText());
     }
 };
 MyComponent.style = myComponentCss();

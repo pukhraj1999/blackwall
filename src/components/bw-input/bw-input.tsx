@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Watch, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'bw-input',
@@ -27,7 +27,22 @@ export class BwInput {
   @Prop() labelBold: boolean = false;
 
   @Prop() label: string = 'Name';
+  @Prop() type: string = 'type';
   @Prop() placeholder: string = 'Type Something';
+
+  // For Text Area
+  @Prop() textarea: boolean = false;
+  @Prop() row: number = 5;
+  @Prop() col: number = 5;
+
+  @Event()
+  changedValue!: EventEmitter<{ oldValue: string; newValue: string }>;
+
+  @Watch('value')
+  valueChanged(newValue: string, oldValue: string) {
+    // react to the change
+    this.changedValue.emit({ oldValue, newValue });
+  }
 
   render() {
     return (
@@ -57,21 +72,43 @@ export class BwInput {
         >
           {this.label}
         </p>
-        <input
-          style={{
-            margin: this.mg,
-            padding: this.pd,
-            fontSize: this.size,
-          }}
-          class={{
-            'input': true,
-            'input-error': this.isError,
-          }}
-          type="text"
-          placeholder={this.placeholder}
-          disabled={this.isDisabled}
-          required={this.isRequired}
-        />
+        {!this.textarea && (
+          <input
+            style={{
+              margin: this.mg,
+              padding: this.pd,
+              fontSize: this.size,
+            }}
+            class={{
+              'input': true,
+              'input-error': this.isError,
+            }}
+            type={this.type}
+            placeholder={this.placeholder}
+            value={this.value}
+            disabled={this.isDisabled}
+            required={this.isRequired}
+          />
+        )}
+        {this.textarea && (
+          <textarea
+            style={{
+              margin: this.mg,
+              padding: this.pd,
+              fontSize: this.size,
+            }}
+            class={{
+              'input': true,
+              'input-error': this.isError,
+            }}
+            rows={this.row}
+            cols={this.col}
+            placeholder={this.placeholder}
+            value={this.value}
+            disabled={this.isDisabled}
+            required={this.isRequired}
+          />
+        )}
         {this.isError && (
           <p
             class={{

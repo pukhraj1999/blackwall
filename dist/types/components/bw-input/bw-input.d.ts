@@ -1,3 +1,4 @@
+import { EventEmitter } from '../../stencil-public-runtime';
 export declare class BwInput {
     isError: boolean;
     value: string;
@@ -15,6 +16,15 @@ export declare class BwInput {
     labelSize: string;
     labelBold: boolean;
     label: string;
+    type: string;
     placeholder: string;
+    textarea: boolean;
+    row: number;
+    col: number;
+    changedValue: EventEmitter<{
+        oldValue: string;
+        newValue: string;
+    }>;
+    valueChanged(newValue: string, oldValue: string): void;
     render(): any;
 }

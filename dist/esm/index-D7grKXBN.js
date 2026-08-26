@@ -1,5 +1,5 @@
 const NAMESPACE = 'blackwall';
-const BUILD = /* blackwall */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", lazyLoad: true, propChangeCallback: false, state: true, updatable: true};
+const BUILD = /* blackwall */ { hotModuleReplacement: false, hydratedSelectorName: "hydrated", lazyLoad: true, propChangeCallback: true, state: true, updatable: true};
 
 /*
  Stencil Client Platform v4.44.1 | MIT Licensed | https://stenciljs.com
@@ -436,6 +436,31 @@ var newVNode = (tag, text) => {
 };
 var Host = {};
 var isHost = (node) => node && node.$tag$ === Host;
+
+// src/runtime/normalize-watchers.ts
+var normalizeWatchers = (raw) => {
+  if (!raw) return void 0;
+  const keys = Object.keys(raw);
+  if (keys.length === 0) return void 0;
+  let hasLegacy = false;
+  for (const propName of keys) {
+    if (hasLegacy) break;
+    for (const h2 of raw[propName]) {
+      if (typeof h2 === "string") {
+        hasLegacy = true;
+        break;
+      }
+    }
+  }
+  if (!hasLegacy) return raw;
+  const out = {};
+  for (const propName of keys) {
+    out[propName] = raw[propName].map(
+      (h2) => typeof h2 === "string" ? { [h2]: 0 } : h2
+    );
+  }
+  return out;
+};
 
 // src/runtime/parse-property-value.ts
 var parsePropertyValue = (propValue, propType, isFormAssociated) => {
@@ -1064,6 +1089,7 @@ var setValue = (ref, propName, newVal, cmpMeta) => {
       `Couldn't find host element for "${cmpMeta.$tagName$}" as it is unknown to this Stencil runtime. This usually happens when integrating a 3rd party Stencil component with another Stencil component or application. Please reach out to the maintainers of the 3rd party Stencil component or report this on the Stencil Discord server (https://chat.stenciljs.com) or comment on this similar [GitHub issue](https://github.com/stenciljs/core/issues/5457).`
     );
   }
+  const elm = hostRef.$hostElement$ ;
   const oldVal = hostRef.$instanceValues$.get(propName);
   const flags = hostRef.$flags$;
   const instance = hostRef.$lazyInstance$ ;
@@ -1074,6 +1100,27 @@ var setValue = (ref, propName, newVal, cmpMeta) => {
   const didValueChange = newVal !== oldVal && !areBothNaN;
   if ((!(flags & 8 /* isConstructingInstance */) || oldVal === void 0) && didValueChange) {
     hostRef.$instanceValues$.set(propName, newVal);
+    if (cmpMeta.$watchers$) {
+      const watchMethods = cmpMeta.$watchers$[propName];
+      if (watchMethods) {
+        watchMethods.map((watcher) => {
+          try {
+            const [[watchMethodName, watcherFlags]] = Object.entries(watcher);
+            if (flags & 128 /* isWatchReady */ || watcherFlags & 1 /* Immediate */) {
+              if (!instance) {
+                hostRef.$fetchedCbList$.push(() => {
+                  hostRef.$lazyInstance$[watchMethodName](newVal, oldVal, propName);
+                });
+              } else {
+                instance[watchMethodName](newVal, oldVal, propName);
+              }
+            }
+          } catch (e) {
+            consoleError(e, elm);
+          }
+        });
+      }
+    }
     if (flags & 2 /* hasRendered */) {
       if (instance.componentShouldUpdate) {
         const shouldUpdate = instance.componentShouldUpdate(newVal, oldVal, propName);
@@ -1093,6 +1140,17 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
   var _a, _b;
   const prototype = Cstr.prototype;
   if (cmpMeta.$members$ || BUILD.propChangeCallback) {
+    {
+      if (Cstr.watchers && !cmpMeta.$watchers$) {
+        cmpMeta.$watchers$ = normalizeWatchers(Cstr.watchers);
+      }
+      if (Cstr.deserializers && !cmpMeta.$deserializers$) {
+        cmpMeta.$deserializers$ = Cstr.deserializers;
+      }
+      if (Cstr.serializers && !cmpMeta.$serializers$) {
+        cmpMeta.$serializers$ = Cstr.serializers;
+      }
+    }
     const members = Object.entries((_a = cmpMeta.$members$) != null ? _a : {});
     members.map(([memberName, [memberFlags]]) => {
       if ((memberFlags & 31 /* Prop */ || (flags & 2 /* proxyState */) && memberFlags & 32 /* State */)) {
@@ -1252,6 +1310,11 @@ var initializeComponent = async (elm, hostRef, cmpMeta, hmrVersionId) => {
           throw new Error(`Constructor for "${cmpMeta.$tagName$}#${hostRef.$modeName$}" was not found`);
         }
         if (!Cstr.isProxied) {
+          {
+            cmpMeta.$watchers$ = normalizeWatchers(Cstr.watchers);
+            cmpMeta.$serializers$ = Cstr.serializers;
+            cmpMeta.$deserializers$ = Cstr.deserializers;
+          }
           proxyComponent(Cstr, cmpMeta, 2 /* proxyState */);
           Cstr.isProxied = true;
         }
@@ -1266,6 +1329,9 @@ var initializeComponent = async (elm, hostRef, cmpMeta, hmrVersionId) => {
         }
         {
           hostRef.$flags$ &= -9 /* isConstructingInstance */;
+        }
+        {
+          hostRef.$flags$ |= 128 /* isWatchReady */;
         }
         endNewInstance();
         {
@@ -1400,6 +1466,7 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
   plt.$resourcesUrl$ = new URL(options.resourcesUrl || "./", win.document.baseURI).href;
   lazyBundles.map((lazyBundle) => {
     lazyBundle[1].map((compactMeta) => {
+      var _a2, _b;
       const cmpMeta = {
         $flags$: compactMeta[0],
         $tagName$: compactMeta[1],
@@ -1408,6 +1475,11 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
       };
       {
         cmpMeta.$members$ = compactMeta[2];
+      }
+      {
+        cmpMeta.$watchers$ = normalizeWatchers(compactMeta[4]);
+        cmpMeta.$serializers$ = (_a2 = compactMeta[5]) != null ? _a2 : {};
+        cmpMeta.$deserializers$ = (_b = compactMeta[6]) != null ? _b : {};
       }
       const tagName = transformTag(cmpMeta.$tagName$);
       const HostElement = class extends HTMLElement {

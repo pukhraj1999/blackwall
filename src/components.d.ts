@@ -77,6 +77,10 @@ export namespace Components {
         "boxPdH": string;
         "boxPdV": string;
         /**
+          * @default 5
+         */
+        "col": number;
+        /**
           * @default 'Name'
          */
         "label": string;
@@ -101,9 +105,21 @@ export namespace Components {
          */
         "placeholder": string;
         /**
+          * @default 5
+         */
+        "row": number;
+        /**
           * @default '1rem'
          */
         "size": string;
+        /**
+          * @default false
+         */
+        "textarea": boolean;
+        /**
+          * @default 'type'
+         */
+        "type": string;
     }
     interface BwModal {
         /**
@@ -152,6 +168,10 @@ export interface BwBtnCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLBwBtnElement;
 }
+export interface BwInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBwInputElement;
+}
 export interface BwModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLBwModalElement;
@@ -186,7 +206,18 @@ declare global {
         prototype: HTMLBwContainerElement;
         new (): HTMLBwContainerElement;
     };
+    interface HTMLBwInputElementEventMap {
+        "changedValue": { oldValue: string; newValue: string };
+    }
     interface HTMLBwInputElement extends Components.BwInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLBwInputElementEventMap>(type: K, listener: (this: HTMLBwInputElement, ev: BwInputCustomEvent<HTMLBwInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLBwInputElementEventMap>(type: K, listener: (this: HTMLBwInputElement, ev: BwInputCustomEvent<HTMLBwInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLBwInputElement: {
         prototype: HTMLBwInputElement;
@@ -304,6 +335,10 @@ declare namespace LocalJSX {
         "boxPdH": string;
         "boxPdV": string;
         /**
+          * @default 5
+         */
+        "col"?: number;
+        /**
           * @default 'Name'
          */
         "label"?: string;
@@ -319,6 +354,7 @@ declare namespace LocalJSX {
           * @default '0px'
          */
         "mg"?: string;
+        "onChangedValue"?: (event: BwInputCustomEvent<{ oldValue: string; newValue: string }>) => void;
         /**
           * @default '5px'
          */
@@ -328,9 +364,21 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * @default 5
+         */
+        "row"?: number;
+        /**
           * @default '1rem'
          */
         "size"?: string;
+        /**
+          * @default false
+         */
+        "textarea"?: boolean;
+        /**
+          * @default 'type'
+         */
+        "type"?: string;
     }
     interface BwModal {
         /**
@@ -410,7 +458,11 @@ declare namespace LocalJSX {
         "labelSize": string;
         "labelBold": boolean;
         "label": string;
+        "type": string;
         "placeholder": string;
+        "textarea": boolean;
+        "row": number;
+        "col": number;
     }
     interface BwModalAttributes {
         "isOpen": boolean;

@@ -1,1 +1,1 @@
-import{B as o,d as s}from"./p-SxLOvFXC.js";const p=o,r=s;export{p as BwModal,r as defineCustomElement}
+import{B as o,d as s}from"./p-BOo_VMk4.js";const p=o,r=s;export{p as BwModal,r as defineCustomElement}

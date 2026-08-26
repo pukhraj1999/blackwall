@@ -16,9 +16,19 @@ export class BwInput {
     labelSize = '1.5rem';
     labelBold = false;
     label = 'Name';
+    type = 'type';
     placeholder = 'Type Something';
+    // For Text Area
+    textarea = false;
+    row = 5;
+    col = 5;
+    changedValue;
+    valueChanged(newValue, oldValue) {
+        // react to the change
+        this.changedValue.emit({ oldValue, newValue });
+    }
     render() {
-        return (h("div", { key: '15313d6745e29e93823685713dc0d8294a1e7f65', class: "input-box", style: {
+        return (h("div", { key: 'b818bec9c380785ffc23137a550279446967053f', class: "input-box", style: {
                 margin: this.boxMg,
                 marginTop: this.boxMgV || this.boxMg,
                 marginBottom: this.boxMgV || this.boxMg,
@@ -29,18 +39,25 @@ export class BwInput {
                 paddingBottom: this.boxPdV || this.boxPd,
                 paddingLeft: this.boxPdH || this.boxPd,
                 paddingRight: this.boxPdH || this.boxPd,
-            } }, h("p", { key: '978a1faed388671ccd65b4e29666027d21547b88', class: {
+            } }, h("p", { key: 'f0000b6237a70a14cbca9354bdd6274fcb19f950', class: {
                 'label-bold': this.labelBold,
             }, style: {
                 fontSize: this.labelSize,
-            } }, this.label), h("input", { key: '63f1380ca877655ed738fe3772a410a8d06b1203', style: {
+            } }, this.label), !this.textarea && (h("input", { key: '4b12dc4bbdd2b949599cb396c694cbc4faee3751', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, type: "text", placeholder: this.placeholder, disabled: this.isDisabled, required: this.isRequired }), this.isError && (h("p", { key: 'e8104eab175a633cb33ce8e906b4dd5fab677c7d', class: {
+            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (h("textarea", { key: '14f9bf38b89ba2f722847d750ccfd62e1c9ececa', style: {
+                margin: this.mg,
+                padding: this.pd,
+                fontSize: this.size,
+            }, class: {
+                'input': true,
+                'input-error': this.isError,
+            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (h("p", { key: '20f41dca493690afbf0ca3d2d700493180ff1446', class: {
                 'error-msg': true,
             } }, "This is error message"))));
     }
@@ -294,6 +311,26 @@ export class BwInput {
                 "attribute": "label",
                 "defaultValue": "'Name'"
             },
+            "type": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "type",
+                "defaultValue": "'type'"
+            },
             "placeholder": {
                 "type": "string",
                 "mutable": false,
@@ -313,6 +350,66 @@ export class BwInput {
                 "reflect": false,
                 "attribute": "placeholder",
                 "defaultValue": "'Type Something'"
+            },
+            "textarea": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "textarea",
+                "defaultValue": "false"
+            },
+            "row": {
+                "type": "number",
+                "mutable": false,
+                "complexType": {
+                    "original": "number",
+                    "resolved": "number",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "row",
+                "defaultValue": "5"
+            },
+            "col": {
+                "type": "number",
+                "mutable": false,
+                "complexType": {
+                    "original": "number",
+                    "resolved": "number",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "col",
+                "defaultValue": "5"
             }
         };
     }
@@ -323,5 +420,29 @@ export class BwInput {
             "isRequired": {},
             "isDisabled": {}
         };
+    }
+    static get events() {
+        return [{
+                "method": "changedValue",
+                "name": "changedValue",
+                "bubbles": true,
+                "cancelable": true,
+                "composed": true,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "complexType": {
+                    "original": "{ oldValue: string; newValue: string }",
+                    "resolved": "{ oldValue: string; newValue: string; }",
+                    "references": {}
+                }
+            }];
+    }
+    static get watchers() {
+        return [{
+                "propName": "value",
+                "methodName": "valueChanged"
+            }];
     }
 }

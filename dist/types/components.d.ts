@@ -10,7 +10,7 @@ export { default as ILink } from "./models/ILink";
 export namespace Components {
     interface BwBtn {
         /**
-          * @default "1px"
+          * @default "2px"
          */
         "borderWidth": string;
         /**
@@ -56,11 +56,19 @@ export namespace Components {
          */
         "populate": boolean;
         /**
+          * @default ""
+         */
+        "rating": string;
+        /**
           * @default false
          */
         "showBtn": boolean;
         "tagTitle": string;
         "tags": string[];
+        /**
+          * @default "1.5rem"
+         */
+        "titleSize": string;
     }
     interface BwContainer {
         /**
@@ -367,7 +375,7 @@ declare namespace LocalJSX {
 
     interface BwBtn {
         /**
-          * @default "1px"
+          * @default "2px"
          */
         "borderWidth"?: string;
         /**
@@ -414,11 +422,19 @@ declare namespace LocalJSX {
          */
         "populate"?: boolean;
         /**
+          * @default ""
+         */
+        "rating"?: string;
+        /**
           * @default false
          */
         "showBtn"?: boolean;
         "tagTitle": string;
         "tags": string[];
+        /**
+          * @default "1.5rem"
+         */
+        "titleSize"?: string;
     }
     interface BwContainer {
         /**
@@ -631,6 +647,8 @@ declare namespace LocalJSX {
         "cardRadius": string;
         "border": string;
         "showBtn": boolean;
+        "titleSize": string;
+        "rating": string;
         "name": string;
         "description": string;
         "descriptionLength": number;

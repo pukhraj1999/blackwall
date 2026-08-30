@@ -8,6 +8,8 @@ export declare class BwCard {
     cardRadius: string;
     border: string;
     showBtn: boolean;
+    titleSize: string;
+    rating: string;
     name: string;
     description: string;
     descriptionLength: number;

@@ -9,7 +9,7 @@
 
 | Property      | Attribute      | Description | Type     | Default     |
 | ------------- | -------------- | ----------- | -------- | ----------- |
-| `borderWidth` | `border-width` |             | `string` | `"1px"`     |
+| `borderWidth` | `border-width` |             | `string` | `"2px"`     |
 | `link`        | `link`         |             | `string` | `"#"`       |
 | `name`        | `name`         |             | `string` | `"Name"`    |
 | `radius`      | `radius`       |             | `string` | `"0px"`     |

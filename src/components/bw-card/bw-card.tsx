@@ -20,6 +20,8 @@ export class BwCard {
   @Prop() cardRadius: string = "0px";
   @Prop() border: string = "";
   @Prop() showBtn: boolean = false;
+  @Prop() titleSize: string = "1.5rem";
+  @Prop() rating: string = "";
 
   @Prop() name!: string;
 
@@ -79,7 +81,10 @@ export class BwCard {
       }}>
         <bw-img imgSrc={this.imgSrc || ''} imgAlt={this.imgAlt || ''} radiusTop={this.cardRadius} ></bw-img>
         <div class="card-content">
-          <p class="card-title">{this.name || ""}</p>
+          <bw-container spaceBetween={true} primary={true}>
+            <p class="card-title" style={{ fontSize: this.titleSize }}>{this.name || ""}</p>
+            {this.rating && <p>Rating: ⭐ {this.rating} Star </p>}
+          </bw-container>
           <div class="card-tags">
             <span class="card-tag-title">{this.tagTitle || ''}</span>
             {this.tags && this.tags.map((tag, index) => (

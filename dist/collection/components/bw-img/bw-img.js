@@ -10,7 +10,7 @@ export class BwImg {
     radiusBottom = '';
     radius = '';
     render() {
-        return (h("img", { key: '8d72a03827c4212944df7359d3ded884294bf86d', style: {
+        return (h("img", { key: 'ff8938abdc5615f98e590400a739cc381b256265', style: {
                 width: this.width,
                 height: this.height,
                 borderColor: Theme.color,

@@ -28,7 +28,7 @@ export class BwInput {
         this.changedValue.emit({ oldValue, newValue });
     }
     render() {
-        return (h("div", { key: '0161e6dcfe6278f054a12beb69c515381f4f8d53', class: "input-box", style: {
+        return (h("div", { key: '858f2c8460d9e7a2d38819fa7b98ad7107b563af', class: "input-box", style: {
                 margin: this.boxMg,
                 marginTop: this.boxMgV || this.boxMg,
                 marginBottom: this.boxMgV || this.boxMg,
@@ -39,25 +39,25 @@ export class BwInput {
                 paddingBottom: this.boxPdV || this.boxPd,
                 paddingLeft: this.boxPdH || this.boxPd,
                 paddingRight: this.boxPdH || this.boxPd,
-            } }, h("p", { key: 'e51d73e07df1a61d3a22243b9e581b1e1adbc721', class: {
+            } }, h("p", { key: '2a982f449595b2d2ac00e07823e7d6f6cac341cb', class: {
                 'label-bold': this.labelBold,
             }, style: {
                 fontSize: this.labelSize,
-            } }, this.label), !this.textarea && (h("input", { key: 'ceb0bd0061459f065f4d4111e300012e87ef710e', style: {
+            } }, this.label), !this.textarea && (h("input", { key: 'bc2127385b477b54240153a891a56420320bb8ef', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (h("textarea", { key: '08d540ff6319fd00923cebc79dbd0a2e6db19d27', style: {
+            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (h("textarea", { key: '27542bf4bc8fcdcb2923b8758e66fc09eda7a413', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (h("p", { key: 'cbbe2285f1b2e42f4b165f5f3a8f2e30e87372d2', class: {
+            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (h("p", { key: 'b9525cee7458e711cd04dcbcef2b4efcb22c0acb', class: {
                 'error-msg': true,
             } }, "This is error message"))));
     }

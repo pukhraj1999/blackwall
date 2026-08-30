@@ -9,7 +9,7 @@ export class BwBtn {
 
   @Prop() name: string = "Name";
   @Prop() link: string = "#";
-  @Prop() borderWidth: string = "1px";
+  @Prop() borderWidth: string = "2px";
   @Prop() radius: string = "0px";
   @Prop() size: string = "1.25rem";
 
@@ -27,8 +27,8 @@ export class BwBtn {
           href={this.link}
           style={{
             fontSize: this.size,
-            borderWidth: this.borderWidth,
-            borderRadius: this.radius
+            border:this.borderWidth + " solid white",
+            borderRadius: this.radius,
           }}
           class="btn"
           onClick={this.performAction}>

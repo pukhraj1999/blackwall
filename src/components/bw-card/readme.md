@@ -18,9 +18,11 @@
 | `link`                     | `link`               |             | `string`   | `'#'`       |
 | `name` _(required)_        | `name`               |             | `string`   | `undefined` |
 | `populate`                 | `populate`           |             | `boolean`  | `true`      |
+| `rating`                   | `rating`             |             | `string`   | `""`        |
 | `showBtn`                  | `show-btn`           |             | `boolean`  | `false`     |
 | `tagTitle` _(required)_    | `tag-title`          |             | `string`   | `undefined` |
 | `tags` _(required)_        | --                   |             | `string[]` | `undefined` |
+| `titleSize`                | `title-size`         |             | `string`   | `"1.5rem"`  |
 
 
 ## Slots
@@ -35,12 +37,14 @@
 ### Depends on
 
 - [bw-img](../bw-img)
+- [bw-container](../bw-container)
 - [bw-btn](../bw-btn)
 
 ### Graph
 ```mermaid
 graph TD;
   bw-card --> bw-img
+  bw-card --> bw-container
   bw-card --> bw-btn
   style bw-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

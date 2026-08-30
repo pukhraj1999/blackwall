@@ -9,6 +9,8 @@ export class BwCard {
     cardRadius = "0px";
     border = "";
     showBtn = false;
+    titleSize = "1.5rem";
+    rating = "";
     name;
     description;
     descriptionLength = 200;
@@ -54,10 +56,10 @@ export class BwCard {
         return this.tagColors[index % this.tagColors.length];
     }
     render() {
-        return (h("div", { key: 'd68f5fdd757420b86865d80863a02c68740d7dcf', class: "card", style: {
+        return (h("div", { key: '087fe4d4278189b38b1f9731b9715e258e1c4f10', class: "card", style: {
                 borderRadius: this.cardRadius,
                 border: this.border
-            } }, h("bw-img", { key: 'cafa524e48882a5aa4247ad29b235c05c94b8539', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), h("div", { key: '46e0bf2061d901c96f678d388bdf7df5b98ae572', class: "card-content" }, h("p", { key: '1147a10e4a6ce09ab9a5aee9297c74b346e0bdb3', class: "card-title" }, this.name || ""), h("div", { key: '3eccd9ccf28678df3e86bc907195ae1484c4f922', class: "card-tags" }, h("span", { key: '56d0bde10adacb54ac0d770ec8ec66b928fa2e1e', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '2e93aa618b6452742a9e599d62436caefff38cef', class: "card-description" }, this.setDescription || ''), h("slot", { key: '6a5f816109005c1eb009cada7dee221a5a9e835c' }), this.showBtn && h("bw-btn", { key: 'ddd073c3ed0e52523df43115675059336599cf4a', name: "Learn More", link: this.link || '#' }))));
+            } }, h("bw-img", { key: '8b538e0f1d83fd92d085ca09e72d0f0a349d1fba', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), h("div", { key: 'd3a403029480c499402a770dc15cd7f754b9ae52', class: "card-content" }, h("bw-container", { key: '5c93e6ab3f114cccdab851100b941253d6dbbaa0', spaceBetween: true, primary: true }, h("p", { key: '5eeb0d23ffb88908d7e5e4e7dd960d88234f4687', class: "card-title", style: { fontSize: this.titleSize } }, this.name || ""), this.rating && h("p", { key: '0bef3bc7ae45367ea7494985beb2f0bdcc89a4db' }, "Rating: \u2B50 ", this.rating, " Star ")), h("div", { key: '7be96b42b51e9fceb29d622675d542ee47fda0af', class: "card-tags" }, h("span", { key: 'f0fe2ca3b323490b493af1b0a2856490151edbc5', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '817d2bbf5ac0277c3ec1cf4552517706dbde561c', class: "card-description" }, this.setDescription || ''), h("slot", { key: 'd60779f791d48d785b31e587b8558a6871b66eb7' }), this.showBtn && h("bw-btn", { key: 'ce97c4ece412f3c3fcfb425a07ecaa8a2264bbb7', name: "Learn More", link: this.link || '#' }))));
     }
     static get is() { return "bw-card"; }
     static get encapsulation() { return "shadow"; }
@@ -190,6 +192,46 @@ export class BwCard {
                 "reflect": false,
                 "attribute": "show-btn",
                 "defaultValue": "false"
+            },
+            "titleSize": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "title-size",
+                "defaultValue": "\"1.5rem\""
+            },
+            "rating": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "rating",
+                "defaultValue": "\"\""
             },
             "name": {
                 "type": "string",

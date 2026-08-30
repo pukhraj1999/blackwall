@@ -19,7 +19,7 @@ export class BwContainer {
     flex = false;
     split = false;
     render() {
-        return (h("main", { key: '8677dfb51a4778c2bd7958986eb3bb7f3e1341da', style: {
+        return (h("main", { key: '30cef91be286cb86e7ee1c4e42b1b3fb4041728f', style: {
                 margin: this.mg || '0px',
                 marginTop: this.mgV || this.mg,
                 marginBottom: this.mgV || this.mg,
@@ -40,7 +40,7 @@ export class BwContainer {
                 // apply theme
                 color: Theme.color,
                 backgroundColor: this.primary ? Theme.primary : Theme.secondary,
-            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, h("slot", { key: '16930a8d98eb2c58ad3df2d2d1d614fb1576fd7a' })));
+            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, h("slot", { key: '8f3e0982627ccf872fca288b73e0f6f263977929' })));
     }
     static get is() { return "bw-container"; }
     static get encapsulation() { return "shadow"; }

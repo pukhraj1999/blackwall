@@ -2,7 +2,7 @@
 
 var index = require('./index-DEP0cWTe.js');
 
-const bwBtnCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }    display: block; }  .btn-box {   display: grid;   margin-top: 5px; }  .btn {   background-color: transparent;   color: white;   font-weight: bold;   padding: 10px 20px;   text-align: center;   letter-spacing: 1px;   border-style: solids;   text-decoration: none; }  .btn:hover {   background-color: white;   color: #131b2e;   transition: all 0.3s ease-in-out;   border-color: #131b2e; }`;
+const bwBtnCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }    display: block; }  .btn-box {   display: grid;   margin-top: 5px; }  .btn {   background-color: transparent;   color: white;   font-weight: bold;   padding: 10px 20px;   text-align: center;   letter-spacing: 1px;   border-style: solids;   text-decoration: none; }  .btn:hover {   background-color: white;   color: #131b2e;   transition: all 0.3s ease-in-out; }`;
 
 const BwBtn = class {
     constructor(hostRef) {
@@ -11,7 +11,7 @@ const BwBtn = class {
     }
     name = "Name";
     link = "#";
-    borderWidth = "1px";
+    borderWidth = "2px";
     radius = "0px";
     size = "1.25rem";
     press;
@@ -19,16 +19,16 @@ const BwBtn = class {
         this.press.emit();
     };
     render() {
-        return (index.h("div", { key: 'fd77f7463e000565eb8380c21a1dbfb0fff2a09f', class: "btn-box" }, index.h("a", { key: '32cb0cd8a914e8615179b6f1e380e6a6cd67431c', href: this.link, style: {
+        return (index.h("div", { key: 'fd77f7463e000565eb8380c21a1dbfb0fff2a09f', class: "btn-box" }, index.h("a", { key: '381ba1c983f63520b3adc20f0766f9457db6c4b8', href: this.link, style: {
                 fontSize: this.size,
-                borderWidth: this.borderWidth,
-                borderRadius: this.radius
+                border: this.borderWidth + " solid white",
+                borderRadius: this.radius,
             }, class: "btn", onClick: this.performAction }, this.name)));
     }
 };
 BwBtn.style = bwBtnCss();
 
-const bwCardCss = () => `:host{display:block}*{margin:0;padding:0;box-sizing:border-box}.card{background-color:#131b2e;cursor:pointer;transition:transform 0.2s ease,   border-color 0.2s ease}.card:hover{transform:translateY(-4px);border-color:rgba(96, 165, 250, 0.4)}.card_shadow{box-shadow:0 0 2px 2spx rgba(0, 0, 0, 0.5)}.card-content{padding:10px}.card-title{font-size:1.5rem;font-weight:bold;letter-spacing:1px;color:white}.card-description{font-size:1rem;color:white}.card-tags{display:flex;flex-wrap:wrap;row-gap:5px;column-gap:10px;margin-top:5px;margin-bottom:5px}.card-tag-title{color:white;padding-top:4px;font-weight:bold;letter-spacing:1px}.card-tag{background-color:rgb(191, 23, 221);padding:4px;color:white;font-weight:bold;letter-spacing:1px;border-radius:5px;border:2px solid black;font-size:0.875rem}`;
+const bwCardCss = () => `:host{display:block}*{margin:0;padding:0;box-sizing:border-box}.card{background-color:#131b2e;cursor:pointer;transition:transform 0.2s ease,   border-color 0.2s ease}.card:hover{transform:translateY(-4px);border-color:rgba(96, 165, 250, 0.4)}.card_shadow{box-shadow:0 0 2px 2spx rgba(0, 0, 0, 0.5)}.card-content{padding:10px}.card-title{font-weight:bold;letter-spacing:1px;color:white}.card-description{font-size:1rem;color:white}.card-tags{display:flex;flex-wrap:wrap;row-gap:5px;column-gap:10px;margin-top:5px;margin-bottom:5px}.card-tag-title{color:white;padding-top:4px;font-weight:bold;letter-spacing:1px}.card-tag{background-color:rgb(191, 23, 221);padding:4px;color:white;font-weight:bold;letter-spacing:1px;border-radius:5px;border:2px solid black;font-size:0.875rem}`;
 
 const BwCard = class {
     constructor(hostRef) {
@@ -43,6 +43,8 @@ const BwCard = class {
     cardRadius = "0px";
     border = "";
     showBtn = false;
+    titleSize = "1.5rem";
+    rating = "";
     name;
     description;
     descriptionLength = 200;
@@ -88,10 +90,10 @@ const BwCard = class {
         return this.tagColors[index % this.tagColors.length];
     }
     render() {
-        return (index.h("div", { key: 'd68f5fdd757420b86865d80863a02c68740d7dcf', class: "card", style: {
+        return (index.h("div", { key: '087fe4d4278189b38b1f9731b9715e258e1c4f10', class: "card", style: {
                 borderRadius: this.cardRadius,
                 border: this.border
-            } }, index.h("bw-img", { key: 'cafa524e48882a5aa4247ad29b235c05c94b8539', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), index.h("div", { key: '46e0bf2061d901c96f678d388bdf7df5b98ae572', class: "card-content" }, index.h("p", { key: '1147a10e4a6ce09ab9a5aee9297c74b346e0bdb3', class: "card-title" }, this.name || ""), index.h("div", { key: '3eccd9ccf28678df3e86bc907195ae1484c4f922', class: "card-tags" }, index.h("span", { key: '56d0bde10adacb54ac0d770ec8ec66b928fa2e1e', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index$1) => (index.h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index$1) } }, tag)))), index.h("p", { key: '2e93aa618b6452742a9e599d62436caefff38cef', class: "card-description" }, this.setDescription || ''), index.h("slot", { key: '6a5f816109005c1eb009cada7dee221a5a9e835c' }), this.showBtn && index.h("bw-btn", { key: 'ddd073c3ed0e52523df43115675059336599cf4a', name: "Learn More", link: this.link || '#' }))));
+            } }, index.h("bw-img", { key: '8b538e0f1d83fd92d085ca09e72d0f0a349d1fba', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), index.h("div", { key: 'd3a403029480c499402a770dc15cd7f754b9ae52', class: "card-content" }, index.h("bw-container", { key: '5c93e6ab3f114cccdab851100b941253d6dbbaa0', spaceBetween: true, primary: true }, index.h("p", { key: '5eeb0d23ffb88908d7e5e4e7dd960d88234f4687', class: "card-title", style: { fontSize: this.titleSize } }, this.name || ""), this.rating && index.h("p", { key: '0bef3bc7ae45367ea7494985beb2f0bdcc89a4db' }, "Rating: \u2B50 ", this.rating, " Star ")), index.h("div", { key: '7be96b42b51e9fceb29d622675d542ee47fda0af', class: "card-tags" }, index.h("span", { key: 'f0fe2ca3b323490b493af1b0a2856490151edbc5', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index$1) => (index.h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index$1) } }, tag)))), index.h("p", { key: '817d2bbf5ac0277c3ec1cf4552517706dbde561c', class: "card-description" }, this.setDescription || ''), index.h("slot", { key: 'd60779f791d48d785b31e587b8558a6871b66eb7' }), this.showBtn && index.h("bw-btn", { key: 'ce97c4ece412f3c3fcfb425a07ecaa8a2264bbb7', name: "Learn More", link: this.link || '#' }))));
     }
 };
 BwCard.style = bwCardCss();
@@ -128,7 +130,7 @@ const BwContainer = class {
     flex = false;
     split = false;
     render() {
-        return (index.h("main", { key: '8677dfb51a4778c2bd7958986eb3bb7f3e1341da', style: {
+        return (index.h("main", { key: '30cef91be286cb86e7ee1c4e42b1b3fb4041728f', style: {
                 margin: this.mg || '0px',
                 marginTop: this.mgV || this.mg,
                 marginBottom: this.mgV || this.mg,
@@ -149,7 +151,7 @@ const BwContainer = class {
                 // apply theme
                 color: Theme.color,
                 backgroundColor: this.primary ? Theme.primary : Theme.secondary,
-            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, index.h("slot", { key: '16930a8d98eb2c58ad3df2d2d1d614fb1576fd7a' })));
+            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, index.h("slot", { key: '8f3e0982627ccf872fca288b73e0f6f263977929' })));
     }
 };
 BwContainer.style = bwContainerCss();
@@ -169,7 +171,7 @@ const BwImg = class {
     radiusBottom = '';
     radius = '';
     render() {
-        return (index.h("img", { key: '8d72a03827c4212944df7359d3ded884294bf86d', style: {
+        return (index.h("img", { key: 'ff8938abdc5615f98e590400a739cc381b256265', style: {
                 width: this.width,
                 height: this.height,
                 borderColor: Theme.color,
@@ -232,7 +234,7 @@ const BwNav = class {
         this.isModalOpen = true;
     };
     render() {
-        return (index.h("section", { key: '04cd53f0a426091f8e6dca98e6c7d13a075799b8' }, index.h("nav", { key: '4ce4c29b178fa558ba168462964968ff0293e3af', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: '7f72c09b88ea8d692b48e19d23e38e1b20f6db2c', class: "left" }, index.h("a", { key: '12bdd6473af7fb2f8de23da2d81b9d3267e702c1', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: '520d67a0edb4bc31cf932caac1e8ac7823567fdf', class: "mid" }), index.h("div", { key: '42ad1a686c8914b502c6048a1a95fb2fe89b9b5c', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: 'dd0d1c23c90e33396ec8a2283bc0ea552a4f132c', class: "mobile-right" }, index.h("img", { key: 'caff587efa11448833f41485424a536d69a69a6b', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: '527952965369602a07ac1f8c970c5827252ec1e5', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: '79d3db13429ace2db1ece3b9461a2983aa73024b', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onPress: () => this.isModalOpen = false })))))));
+        return (index.h("section", { key: '80bf52be09d632dd98ab5b0e0fbb66246b125f28' }, index.h("nav", { key: '76bc1ebad19cf5179d7cf144a8562ab669bbc04a', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: '225efb112697bb8e78eb4fdfc718bff5c3b7e429', class: "left" }, index.h("a", { key: '47aa13b98ad705f3e2c2819dadf92e4fca12ab76', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: 'c1534121ebb379d72735f797e83cff102a91a6bc', class: "mid" }), index.h("div", { key: '7239b131ad03d7ff018e17d7fadf2e1a16003bc7', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: 'e4ac812b1959dcb27e809248e22235dd1ba6cab0', class: "mobile-right" }, index.h("img", { key: '4f39a722ff3c212a81cbd80da55de7df8a5206f7', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: 'f12abef3875b87a707bc52957226be0886971179', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: '87a096f8be7aa67c526370f7d64b2f0d4f376eb9', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onPress: () => this.isModalOpen = false })))))));
     }
 };
 BwNav.style = bwNavCss();

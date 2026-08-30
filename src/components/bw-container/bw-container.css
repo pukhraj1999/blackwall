@@ -7,17 +7,31 @@
   display: block;
 }
 
-.container {
-  color: white;
-  background-color: #151723;
-}
-
-.primary{
-  color: white;
-  background-color: #24293b;;
-}
-
 .container-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.container-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container-flex{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }

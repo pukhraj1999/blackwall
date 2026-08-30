@@ -7,20 +7,31 @@ import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
 })
 export class BwBtn {
 
-  @Prop() name:string = "Name";
-  @Prop() link:string = "#";
-  
+  @Prop() name: string = "Name";
+  @Prop() link: string = "#";
+  @Prop() borderWidth: string = "1px";
+  @Prop() radius: string = "0px";
+  @Prop() size: string = "1.25rem";
+
   @Event()
-  Click!:EventEmitter<void>;
+  press!: EventEmitter<void>;
 
   private performAction = () => {
-    this.Click.emit();
+    this.press.emit();
   }
 
   render() {
     return (
       <div class="btn-box">
-        <a href={this.link} class="btn" onClick={this.performAction}>
+        <a
+          href={this.link}
+          style={{
+            fontSize: this.size,
+            borderWidth: this.borderWidth,
+            borderRadius: this.radius
+          }}
+          class="btn"
+          onClick={this.performAction}>
           {this.name}
         </a>
       </div>

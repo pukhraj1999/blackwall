@@ -2,7 +2,10 @@ import { EventEmitter } from '../../stencil-public-runtime';
 export declare class BwBtn {
     name: string;
     link: string;
-    Click: EventEmitter<void>;
+    borderWidth: string;
+    radius: string;
+    size: string;
+    press: EventEmitter<void>;
     private performAction;
     render(): any;
 }

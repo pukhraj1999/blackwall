@@ -1,0 +1,1 @@
+var f={color:"#ffffff",primary:"#131b2e",secondary:"#0b0f19"};export{f as T}

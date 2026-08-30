@@ -2,12 +2,19 @@ import { h } from "@stencil/core";
 export class BwBtn {
     name = "Name";
     link = "#";
-    Click;
+    borderWidth = "1px";
+    radius = "0px";
+    size = "1.25rem";
+    press;
     performAction = () => {
-        this.Click.emit();
+        this.press.emit();
     };
     render() {
-        return (h("div", { key: 'fc94608cf1bc84fbdd589ed2d4960abec3f75200', class: "btn-box" }, h("a", { key: '65de8d58ba767d43d1038c9f109b00fcfde24ad1', href: this.link, class: "btn", onClick: this.performAction }, this.name)));
+        return (h("div", { key: 'fd77f7463e000565eb8380c21a1dbfb0fff2a09f', class: "btn-box" }, h("a", { key: '32cb0cd8a914e8615179b6f1e380e6a6cd67431c', href: this.link, style: {
+                fontSize: this.size,
+                borderWidth: this.borderWidth,
+                borderRadius: this.radius
+            }, class: "btn", onClick: this.performAction }, this.name)));
     }
     static get is() { return "bw-btn"; }
     static get encapsulation() { return "shadow"; }
@@ -62,13 +69,73 @@ export class BwBtn {
                 "reflect": false,
                 "attribute": "link",
                 "defaultValue": "\"#\""
+            },
+            "borderWidth": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "border-width",
+                "defaultValue": "\"1px\""
+            },
+            "radius": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "radius",
+                "defaultValue": "\"0px\""
+            },
+            "size": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "size",
+                "defaultValue": "\"1.25rem\""
             }
         };
     }
     static get events() {
         return [{
-                "method": "Click",
-                "name": "Click",
+                "method": "press",
+                "name": "press",
                 "bubbles": true,
                 "cancelable": true,
                 "composed": true,

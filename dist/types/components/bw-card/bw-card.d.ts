@@ -5,6 +5,8 @@ export declare class BwCard {
     populate: boolean;
     imgSrc: string;
     imgAlt: string;
+    cardRadius: string;
+    border: string;
     showBtn: boolean;
     name: string;
     description: string;

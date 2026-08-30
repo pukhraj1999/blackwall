@@ -2,15 +2,17 @@ import { h } from "@stencil/core";
 export class BwCard {
     setPopulate;
     setDescription;
-    tagColors = ["rgb(193, 31, 63)", "rgb(34, 64, 183)", "rgb(203, 142, 10)", "rgb(25, 84, 33)", "rgb(191, 23, 221)"];
+    tagColors = ["rgba(59, 130, 246, 0.15)", "rgba(236, 72, 153, 0.15)", "rgba(16, 185, 129,0.15)", "rgba(245, 158, 11, 0.15)", "rgba(191, 23, 221,0.15)"];
     populate = true;
     imgSrc;
     imgAlt;
-    showBtn = true;
+    cardRadius = "0px";
+    border = "";
+    showBtn = false;
     name;
     description;
     descriptionLength = 200;
-    tagTitle = 'Tags:';
+    tagTitle;
     tags;
     link = '#';
     componentWillLoad() {
@@ -34,8 +36,11 @@ export class BwCard {
           Quod distinctio deserunt porro error quisquam sint iusto facilis dolore enim earum labore aspernatur sunt voluptate perferendis vero provident dolores nemo animi obcaecati, dicta ipsa blanditiis! At quam in nostrum.
           Enim quod, saepe tempore dolor quaerat atque vel mollitia aliquid delectus animi ratione magnam. Accusantium numquam asperiores sunt quo amet obcaecati cumque, mollitia, id illo quod, ea nobis tempora sequi.s`;
             }
+            if (!this.tagTitle) {
+                this.tagTitle = "Tags:";
+            }
             if (!this.tags) {
-                this.tags = ['Fast', 'Junk', 'Heavy', 'Vegie Loaded'];
+                this.tags = ['Fast', 'Junk', 'Heavy', 'Vegie Loaded', 'Tasty'];
             }
         }
         if (this.description) {
@@ -49,7 +54,10 @@ export class BwCard {
         return this.tagColors[index % this.tagColors.length];
     }
     render() {
-        return (h("div", { key: '4854c18f4781401ea343f29fe2d4ccffd763bd46', class: "card" }, h("img", { key: '149c32b9d932262ecc51f9c160ad160172696f19', src: this.imgSrc || '', alt: this.imgAlt || '', class: "card-img" }), h("div", { key: 'b224d68fa9b0f69fdf0561a2dc667aa2047ec669', class: "card-content" }, h("p", { key: '202bd12d24ae6d6d6808d359133efc6f03692cf8', class: "card-title" }, this.name || ""), h("div", { key: '5952a03c00b13b8448c4b6a2ad0f9f882f138d55', class: "card-tags" }, h("span", { key: 'f78fb685c3e93cf09bd429cbd5ff535efcb98273', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '5a5f6deac711cb7e7e0d2e84e1bc63e9b0ffa4d6', class: "card-description" }, this.setDescription || ''), this.showBtn && h("bw-btn", { key: 'e0e81ba2c17a16593b3b5c5eed92d1d92b6e0b20', name: "Learn More", link: this.link || '#' }))));
+        return (h("div", { key: 'd68f5fdd757420b86865d80863a02c68740d7dcf', class: "card", style: {
+                borderRadius: this.cardRadius,
+                border: this.border
+            } }, h("bw-img", { key: 'cafa524e48882a5aa4247ad29b235c05c94b8539', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), h("div", { key: '46e0bf2061d901c96f678d388bdf7df5b98ae572', class: "card-content" }, h("p", { key: '1147a10e4a6ce09ab9a5aee9297c74b346e0bdb3', class: "card-title" }, this.name || ""), h("div", { key: '3eccd9ccf28678df3e86bc907195ae1484c4f922', class: "card-tags" }, h("span", { key: '56d0bde10adacb54ac0d770ec8ec66b928fa2e1e', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index) => (h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index) } }, tag)))), h("p", { key: '2e93aa618b6452742a9e599d62436caefff38cef', class: "card-description" }, this.setDescription || ''), h("slot", { key: '6a5f816109005c1eb009cada7dee221a5a9e835c' }), this.showBtn && h("bw-btn", { key: 'ddd073c3ed0e52523df43115675059336599cf4a', name: "Learn More", link: this.link || '#' }))));
     }
     static get is() { return "bw-card"; }
     static get encapsulation() { return "shadow"; }
@@ -123,6 +131,46 @@ export class BwCard {
                 "reflect": false,
                 "attribute": "img-alt"
             },
+            "cardRadius": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "card-radius",
+                "defaultValue": "\"0px\""
+            },
+            "border": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "border",
+                "defaultValue": "\"\""
+            },
             "showBtn": {
                 "type": "boolean",
                 "mutable": false,
@@ -141,7 +189,7 @@ export class BwCard {
                 "setter": false,
                 "reflect": false,
                 "attribute": "show-btn",
-                "defaultValue": "true"
+                "defaultValue": "false"
             },
             "name": {
                 "type": "string",
@@ -209,7 +257,7 @@ export class BwCard {
                     "resolved": "string",
                     "references": {}
                 },
-                "required": false,
+                "required": true,
                 "optional": false,
                 "docs": {
                     "tags": [],
@@ -218,8 +266,7 @@ export class BwCard {
                 "getter": false,
                 "setter": false,
                 "reflect": false,
-                "attribute": "tag-title",
-                "defaultValue": "'Tags:'"
+                "attribute": "tag-title"
             },
             "tags": {
                 "type": "unknown",

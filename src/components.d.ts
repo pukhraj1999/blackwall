@@ -10,6 +10,10 @@ export { default as ILink } from "./models/ILink";
 export namespace Components {
     interface BwBtn {
         /**
+          * @default "1px"
+         */
+        "borderWidth": string;
+        /**
           * @default "#"
          */
         "link": string;
@@ -17,8 +21,24 @@ export namespace Components {
           * @default "Name"
          */
         "name": string;
+        /**
+          * @default "0px"
+         */
+        "radius": string;
+        /**
+          * @default "1.25rem"
+         */
+        "size": string;
     }
     interface BwCard {
+        /**
+          * @default ""
+         */
+        "border": string;
+        /**
+          * @default "0px"
+         */
+        "cardRadius": string;
         "description": string;
         /**
           * @default 200
@@ -36,32 +56,105 @@ export namespace Components {
          */
         "populate": boolean;
         /**
-          * @default true
+          * @default false
          */
         "showBtn": boolean;
-        /**
-          * @default 'Tags:'
-         */
         "tagTitle": string;
         "tags": string[];
     }
     interface BwContainer {
         /**
+          * @default ''
+         */
+        "border": string;
+        /**
+          * @default false
+         */
+        "center": boolean;
+        /**
+          * @default false
+         */
+        "flex": boolean;
+        /**
           * @default false
          */
         "grid": boolean;
         /**
-          * @default "0px"
+          * @default ''
          */
         "mg": string;
         /**
-          * @default "10px"
+          * @default ''
+         */
+        "mgH": string;
+        /**
+          * @default ''
+         */
+        "mgV": string;
+        /**
+          * @default ''
          */
         "pd": string;
+        /**
+          * @default ''
+         */
+        "pdH": string;
+        /**
+          * @default ''
+         */
+        "pdV": string;
         /**
           * @default false
          */
         "primary": boolean;
+        /**
+          * @default ''
+         */
+        "radius": string;
+        /**
+          * @default ''
+         */
+        "radiusBottom": string;
+        /**
+          * @default ''
+         */
+        "radiusTop": string;
+        /**
+          * @default false
+         */
+        "spaceBetween": boolean;
+        /**
+          * @default false
+         */
+        "split": boolean;
+    }
+    interface BwImg {
+        /**
+          * @default ''
+         */
+        "border": string;
+        /**
+          * @default "250px"
+         */
+        "height": string;
+        "imgAlt": string;
+        "imgSrc": string;
+        /**
+          * @default ''
+         */
+        "radius": string;
+        /**
+          * @default ''
+         */
+        "radiusBottom": string;
+        /**
+          * @default ''
+         */
+        "radiusTop": string;
+        /**
+          * @default "100%"
+         */
+        "width": string;
     }
     interface BwInput {
         /**
@@ -178,7 +271,7 @@ export interface BwModalCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLBwBtnElementEventMap {
-        "Click": void;
+        "press": void;
     }
     interface HTMLBwBtnElement extends Components.BwBtn, HTMLStencilElement {
         addEventListener<K extends keyof HTMLBwBtnElementEventMap>(type: K, listener: (this: HTMLBwBtnElement, ev: BwBtnCustomEvent<HTMLBwBtnElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -205,6 +298,12 @@ declare global {
     var HTMLBwContainerElement: {
         prototype: HTMLBwContainerElement;
         new (): HTMLBwContainerElement;
+    };
+    interface HTMLBwImgElement extends Components.BwImg, HTMLStencilElement {
+    }
+    var HTMLBwImgElement: {
+        prototype: HTMLBwImgElement;
+        new (): HTMLBwImgElement;
     };
     interface HTMLBwInputElementEventMap {
         "changedValue": { oldValue: string; newValue: string };
@@ -256,6 +355,7 @@ declare global {
         "bw-btn": HTMLBwBtnElement;
         "bw-card": HTMLBwCardElement;
         "bw-container": HTMLBwContainerElement;
+        "bw-img": HTMLBwImgElement;
         "bw-input": HTMLBwInputElement;
         "bw-modal": HTMLBwModalElement;
         "bw-nav": HTMLBwNavElement;
@@ -267,6 +367,10 @@ declare namespace LocalJSX {
 
     interface BwBtn {
         /**
+          * @default "1px"
+         */
+        "borderWidth"?: string;
+        /**
           * @default "#"
          */
         "link"?: string;
@@ -274,9 +378,25 @@ declare namespace LocalJSX {
           * @default "Name"
          */
         "name"?: string;
-        "onClick"?: (event: BwBtnCustomEvent<void>) => void;
+        "onPress"?: (event: BwBtnCustomEvent<void>) => void;
+        /**
+          * @default "0px"
+         */
+        "radius"?: string;
+        /**
+          * @default "1.25rem"
+         */
+        "size"?: string;
     }
     interface BwCard {
+        /**
+          * @default ""
+         */
+        "border"?: string;
+        /**
+          * @default "0px"
+         */
+        "cardRadius"?: string;
         "description": string;
         /**
           * @default 200
@@ -294,32 +414,105 @@ declare namespace LocalJSX {
          */
         "populate"?: boolean;
         /**
-          * @default true
+          * @default false
          */
         "showBtn"?: boolean;
-        /**
-          * @default 'Tags:'
-         */
-        "tagTitle"?: string;
+        "tagTitle": string;
         "tags": string[];
     }
     interface BwContainer {
+        /**
+          * @default ''
+         */
+        "border"?: string;
+        /**
+          * @default false
+         */
+        "center"?: boolean;
+        /**
+          * @default false
+         */
+        "flex"?: boolean;
         /**
           * @default false
          */
         "grid"?: boolean;
         /**
-          * @default "0px"
+          * @default ''
          */
         "mg"?: string;
         /**
-          * @default "10px"
+          * @default ''
+         */
+        "mgH"?: string;
+        /**
+          * @default ''
+         */
+        "mgV"?: string;
+        /**
+          * @default ''
          */
         "pd"?: string;
+        /**
+          * @default ''
+         */
+        "pdH"?: string;
+        /**
+          * @default ''
+         */
+        "pdV"?: string;
         /**
           * @default false
          */
         "primary"?: boolean;
+        /**
+          * @default ''
+         */
+        "radius"?: string;
+        /**
+          * @default ''
+         */
+        "radiusBottom"?: string;
+        /**
+          * @default ''
+         */
+        "radiusTop"?: string;
+        /**
+          * @default false
+         */
+        "spaceBetween"?: boolean;
+        /**
+          * @default false
+         */
+        "split"?: boolean;
+    }
+    interface BwImg {
+        /**
+          * @default ''
+         */
+        "border"?: string;
+        /**
+          * @default "250px"
+         */
+        "height"?: string;
+        "imgAlt": string;
+        "imgSrc": string;
+        /**
+          * @default ''
+         */
+        "radius"?: string;
+        /**
+          * @default ''
+         */
+        "radiusBottom"?: string;
+        /**
+          * @default ''
+         */
+        "radiusTop"?: string;
+        /**
+          * @default "100%"
+         */
+        "width"?: string;
     }
     interface BwInput {
         /**
@@ -427,11 +620,16 @@ declare namespace LocalJSX {
     interface BwBtnAttributes {
         "name": string;
         "link": string;
+        "borderWidth": string;
+        "radius": string;
+        "size": string;
     }
     interface BwCardAttributes {
         "populate": boolean;
         "imgSrc": string;
         "imgAlt": string;
+        "cardRadius": string;
+        "border": string;
         "showBtn": boolean;
         "name": string;
         "description": string;
@@ -440,10 +638,32 @@ declare namespace LocalJSX {
         "link": string;
     }
     interface BwContainerAttributes {
+        "center": boolean;
+        "spaceBetween": boolean;
         "mg": string;
         "pd": string;
+        "mgV": string;
+        "mgH": string;
+        "pdH": string;
+        "pdV": string;
+        "border": string;
+        "radiusTop": string;
+        "radiusBottom": string;
+        "radius": string;
         "primary": boolean;
         "grid": boolean;
+        "flex": boolean;
+        "split": boolean;
+    }
+    interface BwImgAttributes {
+        "imgSrc": string;
+        "imgAlt": string;
+        "width": string;
+        "height": string;
+        "border": string;
+        "radiusTop": string;
+        "radiusBottom": string;
+        "radius": string;
     }
     interface BwInputAttributes {
         "boxMg": string;
@@ -480,8 +700,9 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "bw-btn": Omit<BwBtn, keyof BwBtnAttributes> & { [K in keyof BwBtn & keyof BwBtnAttributes]?: BwBtn[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `attr:${K}`]?: BwBtnAttributes[K] } & { [K in keyof BwBtn & keyof BwBtnAttributes as `prop:${K}`]?: BwBtn[K] };
-        "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] } & OneOf<"imgSrc", BwCard["imgSrc"], BwCardAttributes["imgSrc"]> & OneOf<"imgAlt", BwCard["imgAlt"], BwCardAttributes["imgAlt"]> & OneOf<"name", BwCard["name"], BwCardAttributes["name"]> & OneOf<"description", BwCard["description"], BwCardAttributes["description"]>;
+        "bw-card": Omit<BwCard, keyof BwCardAttributes> & { [K in keyof BwCard & keyof BwCardAttributes]?: BwCard[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `attr:${K}`]?: BwCardAttributes[K] } & { [K in keyof BwCard & keyof BwCardAttributes as `prop:${K}`]?: BwCard[K] } & OneOf<"imgSrc", BwCard["imgSrc"], BwCardAttributes["imgSrc"]> & OneOf<"imgAlt", BwCard["imgAlt"], BwCardAttributes["imgAlt"]> & OneOf<"name", BwCard["name"], BwCardAttributes["name"]> & OneOf<"description", BwCard["description"], BwCardAttributes["description"]> & OneOf<"tagTitle", BwCard["tagTitle"], BwCardAttributes["tagTitle"]>;
         "bw-container": Omit<BwContainer, keyof BwContainerAttributes> & { [K in keyof BwContainer & keyof BwContainerAttributes]?: BwContainer[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `attr:${K}`]?: BwContainerAttributes[K] } & { [K in keyof BwContainer & keyof BwContainerAttributes as `prop:${K}`]?: BwContainer[K] };
+        "bw-img": Omit<BwImg, keyof BwImgAttributes> & { [K in keyof BwImg & keyof BwImgAttributes]?: BwImg[K] } & { [K in keyof BwImg & keyof BwImgAttributes as `attr:${K}`]?: BwImgAttributes[K] } & { [K in keyof BwImg & keyof BwImgAttributes as `prop:${K}`]?: BwImg[K] } & OneOf<"imgSrc", BwImg["imgSrc"], BwImgAttributes["imgSrc"]> & OneOf<"imgAlt", BwImg["imgAlt"], BwImgAttributes["imgAlt"]>;
         "bw-input": Omit<BwInput, keyof BwInputAttributes> & { [K in keyof BwInput & keyof BwInputAttributes]?: BwInput[K] } & { [K in keyof BwInput & keyof BwInputAttributes as `attr:${K}`]?: BwInputAttributes[K] } & { [K in keyof BwInput & keyof BwInputAttributes as `prop:${K}`]?: BwInput[K] } & OneOf<"boxMgH", BwInput["boxMgH"], BwInputAttributes["boxMgH"]> & OneOf<"boxMgV", BwInput["boxMgV"], BwInputAttributes["boxMgV"]> & OneOf<"boxPdH", BwInput["boxPdH"], BwInputAttributes["boxPdH"]> & OneOf<"boxPdV", BwInput["boxPdV"], BwInputAttributes["boxPdV"]>;
         "bw-modal": Omit<BwModal, keyof BwModalAttributes> & { [K in keyof BwModal & keyof BwModalAttributes]?: BwModal[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `attr:${K}`]?: BwModalAttributes[K] } & { [K in keyof BwModal & keyof BwModalAttributes as `prop:${K}`]?: BwModal[K] };
         "bw-nav": Omit<BwNav, keyof BwNavAttributes> & { [K in keyof BwNav & keyof BwNavAttributes]?: BwNav[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `attr:${K}`]?: BwNavAttributes[K] } & { [K in keyof BwNav & keyof BwNavAttributes as `prop:${K}`]?: BwNav[K] };
@@ -495,6 +716,7 @@ declare module "@stencil/core" {
             "bw-btn": LocalJSX.IntrinsicElements["bw-btn"] & JSXBase.HTMLAttributes<HTMLBwBtnElement>;
             "bw-card": LocalJSX.IntrinsicElements["bw-card"] & JSXBase.HTMLAttributes<HTMLBwCardElement>;
             "bw-container": LocalJSX.IntrinsicElements["bw-container"] & JSXBase.HTMLAttributes<HTMLBwContainerElement>;
+            "bw-img": LocalJSX.IntrinsicElements["bw-img"] & JSXBase.HTMLAttributes<HTMLBwImgElement>;
             "bw-input": LocalJSX.IntrinsicElements["bw-input"] & JSXBase.HTMLAttributes<HTMLBwInputElement>;
             "bw-modal": LocalJSX.IntrinsicElements["bw-modal"] & JSXBase.HTMLAttributes<HTMLBwModalElement>;
             "bw-nav": LocalJSX.IntrinsicElements["bw-nav"] & JSXBase.HTMLAttributes<HTMLBwNavElement>;

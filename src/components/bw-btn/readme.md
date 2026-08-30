@@ -7,17 +7,20 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default  |
-| -------- | --------- | ----------- | -------- | -------- |
-| `link`   | `link`    |             | `string` | `"#"`    |
-| `name`   | `name`    |             | `string` | `"Name"` |
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `borderWidth` | `border-width` |             | `string` | `"1px"`     |
+| `link`        | `link`         |             | `string` | `"#"`       |
+| `name`        | `name`         |             | `string` | `"Name"`    |
+| `radius`      | `radius`       |             | `string` | `"0px"`     |
+| `size`        | `size`         |             | `string` | `"1.25rem"` |
 
 
 ## Events
 
 | Event   | Description | Type                |
 | ------- | ----------- | ------------------- |
-| `Click` |             | `CustomEvent<void>` |
+| `press` |             | `CustomEvent<void>` |
 
 
 ## Dependencies

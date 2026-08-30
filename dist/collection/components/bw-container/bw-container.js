@@ -1,12 +1,46 @@
 import { h } from "@stencil/core";
+import Theme from "../../models/themes";
 export class BwContainer {
-    mg = "0px";
-    pd = "10px";
+    center = false;
+    spaceBetween = false;
+    mg = '';
+    pd = '';
+    mgV = '';
+    mgH = '';
+    pdH = '';
+    pdV = '';
+    border = '';
+    radiusTop = '';
+    radiusBottom = '';
+    radius = '';
     // Default container is secondary
     primary = false;
     grid = false;
+    flex = false;
+    split = false;
     render() {
-        return (h("main", { key: '0075b6950189321fd911a03cec91a7c43ed30580', class: { "container": true, "primary": this.primary, "container-grid": this.grid }, style: { margin: this.mg, padding: this.pd } }, h("slot", { key: '936f3bae96215570b0f44285ad71543a88959f3d' })));
+        return (h("main", { key: '8677dfb51a4778c2bd7958986eb3bb7f3e1341da', style: {
+                margin: this.mg || '0px',
+                marginTop: this.mgV || this.mg,
+                marginBottom: this.mgV || this.mg,
+                marginLeft: this.mgH || this.mg,
+                marginRight: this.mgH || this.mg,
+                padding: this.pd || "0px",
+                paddingTop: this.pdV || this.pd,
+                paddingBottom: this.pdV || this.pd,
+                paddingLeft: this.pdH || this.pd,
+                paddingRight: this.pdH || this.pd,
+                borderColor: Theme.color,
+                border: this.border || "none",
+                borderRadius: this.radius || "0x",
+                borderTopLeftRadius: this.radiusTop || this.radius,
+                borderTopRightRadius: this.radiusTop || this.radius,
+                borderBottomLeftRadius: this.radiusBottom || this.radius,
+                borderBottomRightRadius: this.radiusBottom || this.radius,
+                // apply theme
+                color: Theme.color,
+                backgroundColor: this.primary ? Theme.primary : Theme.secondary,
+            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, h("slot", { key: '16930a8d98eb2c58ad3df2d2d1d614fb1576fd7a' })));
     }
     static get is() { return "bw-container"; }
     static get encapsulation() { return "shadow"; }
@@ -22,6 +56,46 @@ export class BwContainer {
     }
     static get properties() {
         return {
+            "center": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "center",
+                "defaultValue": "false"
+            },
+            "spaceBetween": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "space-between",
+                "defaultValue": "false"
+            },
             "mg": {
                 "type": "string",
                 "mutable": false,
@@ -40,7 +114,7 @@ export class BwContainer {
                 "setter": false,
                 "reflect": false,
                 "attribute": "mg",
-                "defaultValue": "\"0px\""
+                "defaultValue": "''"
             },
             "pd": {
                 "type": "string",
@@ -60,7 +134,167 @@ export class BwContainer {
                 "setter": false,
                 "reflect": false,
                 "attribute": "pd",
-                "defaultValue": "\"10px\""
+                "defaultValue": "''"
+            },
+            "mgV": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "mg-v",
+                "defaultValue": "''"
+            },
+            "mgH": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "mg-h",
+                "defaultValue": "''"
+            },
+            "pdH": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "pd-h",
+                "defaultValue": "''"
+            },
+            "pdV": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "pd-v",
+                "defaultValue": "''"
+            },
+            "border": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "border",
+                "defaultValue": "''"
+            },
+            "radiusTop": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "radius-top",
+                "defaultValue": "''"
+            },
+            "radiusBottom": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "radius-bottom",
+                "defaultValue": "''"
+            },
+            "radius": {
+                "type": "string",
+                "mutable": false,
+                "complexType": {
+                    "original": "string",
+                    "resolved": "string",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "radius",
+                "defaultValue": "''"
             },
             "primary": {
                 "type": "boolean",
@@ -100,6 +334,46 @@ export class BwContainer {
                 "setter": false,
                 "reflect": false,
                 "attribute": "grid",
+                "defaultValue": "false"
+            },
+            "flex": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "flex",
+                "defaultValue": "false"
+            },
+            "split": {
+                "type": "boolean",
+                "mutable": false,
+                "complexType": {
+                    "original": "boolean",
+                    "resolved": "boolean",
+                    "references": {}
+                },
+                "required": false,
+                "optional": false,
+                "docs": {
+                    "tags": [],
+                    "text": ""
+                },
+                "getter": false,
+                "setter": false,
+                "reflect": false,
+                "attribute": "split",
                 "defaultValue": "false"
             }
         };

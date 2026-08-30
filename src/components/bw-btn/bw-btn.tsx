@@ -16,7 +16,10 @@ export class BwBtn {
   @Event()
   press!: EventEmitter<void>;
 
-  private performAction = () => {
+  private performAction = (event: MouseEvent) => {
+    if (this.link === '#' || !this.link) {
+      event.preventDefault();
+    }
     this.press.emit();
   }
 
@@ -27,7 +30,7 @@ export class BwBtn {
           href={this.link}
           style={{
             fontSize: this.size,
-            border:this.borderWidth + " solid white",
+            border: this.borderWidth + " solid white",
             borderRadius: this.radius,
           }}
           class="btn"

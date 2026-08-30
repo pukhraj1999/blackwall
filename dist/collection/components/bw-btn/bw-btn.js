@@ -6,11 +6,14 @@ export class BwBtn {
     radius = "0px";
     size = "1.25rem";
     press;
-    performAction = () => {
+    performAction = (event) => {
+        if (this.link === '#' || !this.link) {
+            event.preventDefault();
+        }
         this.press.emit();
     };
     render() {
-        return (h("div", { key: 'fd77f7463e000565eb8380c21a1dbfb0fff2a09f', class: "btn-box" }, h("a", { key: '381ba1c983f63520b3adc20f0766f9457db6c4b8', href: this.link, style: {
+        return (h("div", { key: 'd8dc0d7db32969e4580ec81b579fd00b04443ea9', class: "btn-box" }, h("a", { key: 'bc39e9e342a2caf9f3895d22f423c5ed2d3d7411', href: this.link, style: {
                 fontSize: this.size,
                 border: this.borderWidth + " solid white",
                 borderRadius: this.radius,

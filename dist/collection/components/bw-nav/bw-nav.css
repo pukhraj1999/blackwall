@@ -57,7 +57,7 @@ a{
   gap: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .right{
     display: none;
   }

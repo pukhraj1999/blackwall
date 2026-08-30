@@ -83,7 +83,7 @@ export class BwCard {
         <div class="card-content">
           <bw-container spaceBetween={true} primary={true}>
             <p class="card-title" style={{ fontSize: this.titleSize }}>{this.name || ""}</p>
-            {this.rating && <p>Rating: ⭐ {this.rating} Star </p>}
+            {this.rating && <p>Rating: ⭐  <span style={{color:"oklch(76.9% 0.188 70.08)", fontWeight:"bold"}}>{this.rating} Star</span>  </p>}
           </bw-container>
           <div class="card-tags">
             <span class="card-tag-title">{this.tagTitle || ''}</span>

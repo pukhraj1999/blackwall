@@ -37,7 +37,7 @@ const BwInput = class {
         this.changedValue.emit({ oldValue, newValue });
     }
     render() {
-        return (index.h("div", { key: '858f2c8460d9e7a2d38819fa7b98ad7107b563af', class: "input-box", style: {
+        return (index.h("div", { key: 'a215a94db9d87b40e0e24bc6ad9c6a565432091a', class: "input-box", style: {
                 margin: this.boxMg,
                 marginTop: this.boxMgV || this.boxMg,
                 marginBottom: this.boxMgV || this.boxMg,
@@ -48,25 +48,25 @@ const BwInput = class {
                 paddingBottom: this.boxPdV || this.boxPd,
                 paddingLeft: this.boxPdH || this.boxPd,
                 paddingRight: this.boxPdH || this.boxPd,
-            } }, index.h("p", { key: '2a982f449595b2d2ac00e07823e7d6f6cac341cb', class: {
+            } }, index.h("p", { key: '5700f1fdc5ad9e41411aa53200e2375e23b7e25a', class: {
                 'label-bold': this.labelBold,
             }, style: {
                 fontSize: this.labelSize,
-            } }, this.label), !this.textarea && (index.h("input", { key: 'bc2127385b477b54240153a891a56420320bb8ef', style: {
+            } }, this.label), !this.textarea && (index.h("input", { key: '7aa2f6b07d11b68201f941f9cf0688ecfdcf35c2', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (index.h("textarea", { key: '27542bf4bc8fcdcb2923b8758e66fc09eda7a413', style: {
+            }, type: this.type, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.textarea && (index.h("textarea", { key: 'd21b4e3bd25f93449857b71d51765921ace29d41', style: {
                 margin: this.mg,
                 padding: this.pd,
                 fontSize: this.size,
             }, class: {
                 'input': true,
                 'input-error': this.isError,
-            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (index.h("p", { key: 'b9525cee7458e711cd04dcbcef2b4efcb22c0acb', class: {
+            }, rows: this.row, cols: this.col, placeholder: this.placeholder, value: this.value, disabled: this.isDisabled, required: this.isRequired })), this.isError && (index.h("p", { key: 'dc96c2892b25e673ec54007c61c5d1e83fb48534', class: {
                 'error-msg': true,
             } }, "This is error message"))));
     }

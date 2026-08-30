@@ -15,11 +15,14 @@ const BwBtn = class {
     radius = "0px";
     size = "1.25rem";
     press;
-    performAction = () => {
+    performAction = (event) => {
+        if (this.link === '#' || !this.link) {
+            event.preventDefault();
+        }
         this.press.emit();
     };
     render() {
-        return (index.h("div", { key: 'fd77f7463e000565eb8380c21a1dbfb0fff2a09f', class: "btn-box" }, index.h("a", { key: '381ba1c983f63520b3adc20f0766f9457db6c4b8', href: this.link, style: {
+        return (index.h("div", { key: 'd8dc0d7db32969e4580ec81b579fd00b04443ea9', class: "btn-box" }, index.h("a", { key: 'bc39e9e342a2caf9f3895d22f423c5ed2d3d7411', href: this.link, style: {
                 fontSize: this.size,
                 border: this.borderWidth + " solid white",
                 borderRadius: this.radius,
@@ -93,7 +96,7 @@ const BwCard = class {
         return (index.h("div", { key: '087fe4d4278189b38b1f9731b9715e258e1c4f10', class: "card", style: {
                 borderRadius: this.cardRadius,
                 border: this.border
-            } }, index.h("bw-img", { key: '8b538e0f1d83fd92d085ca09e72d0f0a349d1fba', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), index.h("div", { key: 'd3a403029480c499402a770dc15cd7f754b9ae52', class: "card-content" }, index.h("bw-container", { key: '5c93e6ab3f114cccdab851100b941253d6dbbaa0', spaceBetween: true, primary: true }, index.h("p", { key: '5eeb0d23ffb88908d7e5e4e7dd960d88234f4687', class: "card-title", style: { fontSize: this.titleSize } }, this.name || ""), this.rating && index.h("p", { key: '0bef3bc7ae45367ea7494985beb2f0bdcc89a4db' }, "Rating: \u2B50 ", this.rating, " Star ")), index.h("div", { key: '7be96b42b51e9fceb29d622675d542ee47fda0af', class: "card-tags" }, index.h("span", { key: 'f0fe2ca3b323490b493af1b0a2856490151edbc5', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index$1) => (index.h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index$1) } }, tag)))), index.h("p", { key: '817d2bbf5ac0277c3ec1cf4552517706dbde561c', class: "card-description" }, this.setDescription || ''), index.h("slot", { key: 'd60779f791d48d785b31e587b8558a6871b66eb7' }), this.showBtn && index.h("bw-btn", { key: 'ce97c4ece412f3c3fcfb425a07ecaa8a2264bbb7', name: "Learn More", link: this.link || '#' }))));
+            } }, index.h("bw-img", { key: '8b538e0f1d83fd92d085ca09e72d0f0a349d1fba', imgSrc: this.imgSrc || '', imgAlt: this.imgAlt || '', radiusTop: this.cardRadius }), index.h("div", { key: 'd3a403029480c499402a770dc15cd7f754b9ae52', class: "card-content" }, index.h("bw-container", { key: '5c93e6ab3f114cccdab851100b941253d6dbbaa0', spaceBetween: true, primary: true }, index.h("p", { key: '5eeb0d23ffb88908d7e5e4e7dd960d88234f4687', class: "card-title", style: { fontSize: this.titleSize } }, this.name || ""), this.rating && index.h("p", { key: '0bef3bc7ae45367ea7494985beb2f0bdcc89a4db' }, "Rating: \u2B50  ", index.h("span", { key: '4e8fc6e8a92498406bae1228d901791eacb2e0d5', style: { color: "oklch(76.9% 0.188 70.08)", fontWeight: "bold" } }, this.rating, " Star"), "  ")), index.h("div", { key: '818b94bb4d59a4be420ed9bc850ff3242b70a2e8', class: "card-tags" }, index.h("span", { key: '477ac773ec7d49d4bb6856bc154a05d400006668', class: "card-tag-title" }, this.tagTitle || ''), this.tags && this.tags.map((tag, index$1) => (index.h("span", { class: "card-tag", style: { backgroundColor: this.getColorForTag(index$1) } }, tag)))), index.h("p", { key: '34c700c1c9799fff24485f91886f7ceae3528ff7', class: "card-description" }, this.setDescription || ''), index.h("slot", { key: 'f036c6bc90cb3e1e7a1dda043df0a9a59757907f' }), this.showBtn && index.h("bw-btn", { key: '610ef1deda8155061118504185e0c4eb80cd1db8', name: "Learn More", link: this.link || '#' }))));
     }
 };
 BwCard.style = bwCardCss();
@@ -130,7 +133,7 @@ const BwContainer = class {
     flex = false;
     split = false;
     render() {
-        return (index.h("main", { key: '30cef91be286cb86e7ee1c4e42b1b3fb4041728f', style: {
+        return (index.h("main", { key: '51486aaf56623e874961ca5bfd261947e32cae32', style: {
                 margin: this.mg || '0px',
                 marginTop: this.mgV || this.mg,
                 marginBottom: this.mgV || this.mg,
@@ -151,7 +154,7 @@ const BwContainer = class {
                 // apply theme
                 color: Theme.color,
                 backgroundColor: this.primary ? Theme.primary : Theme.secondary,
-            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, index.h("slot", { key: '8f3e0982627ccf872fca288b73e0f6f263977929' })));
+            }, class: { "container-grid": this.grid, "container-center": this.center, "container-space-between": this.spaceBetween, 'container-flex': this.flex, 'container-split': this.split } }, index.h("slot", { key: '3b14c01fc3552b843347da49e0e7f9cde0dfe0e9' })));
     }
 };
 BwContainer.style = bwContainerCss();
@@ -171,7 +174,7 @@ const BwImg = class {
     radiusBottom = '';
     radius = '';
     render() {
-        return (index.h("img", { key: 'ff8938abdc5615f98e590400a739cc381b256265', style: {
+        return (index.h("img", { key: '0ef752a0d3893b8a40712936fdad7026ea31c8b6', style: {
                 width: this.width,
                 height: this.height,
                 borderColor: Theme.color,
@@ -210,7 +213,7 @@ BwModal.style = bwModalCss();
 
 const barsSolidFullSvg = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNjQwIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDcuMy4xIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjYgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTk2IDE2MEM5NiAxNDIuMyAxMTAuMyAxMjggMTI4IDEyOEw1MTIgMTI4QzUyOS43IDEyOCA1NDQgMTQyLjMgNTQ0IDE2MEM1NDQgMTc3LjcgNTI5LjcgMTkyIDUxMiAxOTJMMTI4IDE5MkMxMTAuMyAxOTIgOTYgMTc3LjcgOTYgMTYwek05NiAzMjBDOTYgMzAyLjMgMTEwLjMgMjg4IDEyOCAyODhMNTEyIDI4OEM1MjkuNyAyODggNTQ0IDMwMi4zIDU0NCAzMjBDNTQ0IDMzNy43IDUyOS43IDM1MiA1MTIgMzUyTDEyOCAzNTJDMTEwLjMgMzUyIDk2IDMzNy43IDk2IDMyMHpNNTQ0IDQ4MEM1NDQgNDk3LjcgNTI5LjcgNTEyIDUxMiA1MTJMMTI4IDUxMkMxMTAuMyA1MTIgOTYgNDk3LjcgOTYgNDgwQzk2IDQ2Mi4zIDExMC4zIDQ0OCAxMjggNDQ4TDUxMiA0NDhDNTI5LjcgNDQ4IDU0NCA0NjIuMyA1NDQgNDgweiIvPjwvc3ZnPg==';
 
-const bwNavCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; }  a{   text-decoration: none; }  .nav-container{   display: flex;   align-items: center;   justify-content: space-between;   flex-wrap: wrap;   background-color: #131b2e;   color: white; }  .left-header{   font-size: 1.5rem;   font-weight: bold;   letter-spacing: 1px;   color: white; }  .right-link{   padding: 5px;   margin: 5px;   font-size: 1.25rem;   color: white;   letter-spacing: 1px;   border: 4px solid transparent; } .right-link:hover{   color: #131b2e;;   background-color: white;   border: 4px solid #131b2e;;   font-weight: bold;   transition: 0.3s all ease-in-out; } .mobile-right{   display: none; } .burger-icon{   height: 35px;   filter: brightness(0) invert(1);   cursor: pointer;   margin-right: 5px; }  .mobile-link-box{   display: grid;   gap: 10px; }  @media (max-width: 600px) {   .right{     display: none;   }   .mobile-right{     display:block;   } }`;
+const bwNavCss = () => `:host {   * {     margin: 0;     padding: 0;     box-sizing: border-box;   }   display: block; }  a{   text-decoration: none; }  .nav-container{   display: flex;   align-items: center;   justify-content: space-between;   flex-wrap: wrap;   background-color: #131b2e;   color: white; }  .left-header{   font-size: 1.5rem;   font-weight: bold;   letter-spacing: 1px;   color: white; }  .right-link{   padding: 5px;   margin: 5px;   font-size: 1.25rem;   color: white;   letter-spacing: 1px;   border: 4px solid transparent; } .right-link:hover{   color: #131b2e;;   background-color: white;   border: 4px solid #131b2e;;   font-weight: bold;   transition: 0.3s all ease-in-out; } .mobile-right{   display: none; } .burger-icon{   height: 35px;   filter: brightness(0) invert(1);   cursor: pointer;   margin-right: 5px; }  .mobile-link-box{   display: grid;   gap: 10px; }  @media (max-width: 800px) {   .right{     display: none;   }   .mobile-right{     display:block;   } }`;
 
 const BwNav = class {
     constructor(hostRef) {
@@ -234,7 +237,7 @@ const BwNav = class {
         this.isModalOpen = true;
     };
     render() {
-        return (index.h("section", { key: '80bf52be09d632dd98ab5b0e0fbb66246b125f28' }, index.h("nav", { key: '76bc1ebad19cf5179d7cf144a8562ab669bbc04a', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: '225efb112697bb8e78eb4fdfc718bff5c3b7e429', class: "left" }, index.h("a", { key: '47aa13b98ad705f3e2c2819dadf92e4fca12ab76', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: 'c1534121ebb379d72735f797e83cff102a91a6bc', class: "mid" }), index.h("div", { key: '7239b131ad03d7ff018e17d7fadf2e1a16003bc7', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: 'e4ac812b1959dcb27e809248e22235dd1ba6cab0', class: "mobile-right" }, index.h("img", { key: '4f39a722ff3c212a81cbd80da55de7df8a5206f7', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: 'f12abef3875b87a707bc52957226be0886971179', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: '87a096f8be7aa67c526370f7d64b2f0d4f376eb9', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onPress: () => this.isModalOpen = false })))))));
+        return (index.h("section", { key: '1812ecf40897b716c676ed8d5602c21a27d31440' }, index.h("nav", { key: 'dd22e272fe0d8a4a088a9e75ebc2cc3fa55f4ab2', class: "nav-container", style: { margin: this.mg, padding: this.pd } }, index.h("div", { key: 'f1d9bfaa99706f6d57791e7735ca1631848f8851', class: "left" }, index.h("a", { key: '6332d3434ba22a038041abc74f91291f110936f0', href: this.homeLink.link, class: "left-header" }, this.homeLink.name)), index.h("div", { key: 'ff9d084127178afb375624cea145e6b74b7fd804', class: "mid" }), index.h("div", { key: 'bf9ea6b1f88e1ecf11a007ac8fafc9647358f378', class: "right" }, this.links.map(({ name, link }) => (index.h("a", { class: "right-link", href: link }, name)))), index.h("div", { key: '0e11c55f87aa20407584620e6c3a5f68654be851', class: "mobile-right" }, index.h("img", { key: '7f4f71b3d16c9f3001349c72ef254197e4c62d33', onClick: this.openModal, class: "burger-icon", src: barsSolidFullSvg, alt: "" }))), index.h("bw-modal", { key: 'bbf0c5ffe4fe9992803e7b5e8b5f2c5ca5e7ce16', isOpen: this.isModalOpen, onModalClosed: () => (this.isModalOpen = false) }, index.h("div", { key: '5f8f79a687abb8a92a43dffa19e083ad7a80877a', class: "mobile-link-box" }, this.links.map(({ name, link }) => (index.h("bw-btn", { name: name, link: link, onPress: () => this.isModalOpen = false })))))));
     }
 };
 BwNav.style = bwNavCss();

@@ -25,7 +25,7 @@ const MyComponent = class {
         return index$1.format(this.first, this.middle, this.last);
     }
     render() {
-        return index.h("div", { key: '7376d6d3e97ed29205a4a8240af65b40914b40b5' }, "Hello, World! I'm ", this.getText());
+        return index.h("div", { key: 'e83f753054fb4dd40f53704c2da17bb2fe466e2e' }, "Hello, World! I'm ", this.getText());
     }
 };
 MyComponent.style = myComponentCss();

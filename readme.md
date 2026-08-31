@@ -1,53 +1,199 @@
-[![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)](https://stenciljs.com)
 
-# Stencil Component Starter
+# Blackwall
 
-> This is a starter project for building a standalone Web Components using Stencil.
+A modern, reusable web component library built with **Stencil** and **TypeScript**. Blackwall provides a collection of customizable UI components designed for building fast, responsive applications.
 
-Stencil is a compiler for building fast web apps using Web Components.
+## About the Project
 
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than runtime tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements specification.
+**Blackwall** is a comprehensive component library that leverages Stencil to create framework-agnostic web components. Components are written in TypeScript and JSX, offering type safety and developer-friendly APIs. The library includes built-in theming support and comes with extensive testing coverage using Vitest.
 
-Stencil components are just Web Components, so they work in any major framework or with no framework at all.
+### Key Features
+
+- 🚀 **Fast and Lightweight** - Built with Stencil for optimal performance
+- 🎨 **Themeable Components** - Built-in theme system with customizable styling
+- 📦 **Framework Agnostic** - Works with any JavaScript framework or vanilla JS
+- ✅ **Well Tested** - Comprehensive unit and E2E tests with Vitest
+- 🎯 **TypeScript First** - Full type safety and excellent IDE support
+- 📱 **Responsive Design** - Mobile-first component design
+
+## Components
+
+The library includes the following components with the `bw-` prefix:
+
+| Component | Purpose |
+|-----------|---------|
+| **bw-btn** | Button component with customizable size, radius, and border styling |
+| **bw-card** | Card component for displaying content with images, descriptions, and actions |
+| **bw-container** | Container/wrapper component for layout composition |
+| **bw-img** | Image component with enhanced loading and display capabilities |
+| **bw-input** | Form input component for text input with validation support |
+| **bw-modal** | Modal dialog component for overlays and popups |
+| **bw-nav** | Navigation component for building navigation bars |
+| **my-component** | Example component demonstrating Stencil patterns |
+
+## Project Structure
+
+```
+blackwall/
+├── src/
+│   ├── components/          # Individual component implementations
+│   │   ├── bw-btn/         # Button component
+│   │   ├── bw-card/        # Card component
+│   │   ├── bw-container/   # Container component
+│   │   ├── bw-img/         # Image component
+│   │   ├── bw-input/       # Input component
+│   │   ├── bw-modal/       # Modal component
+│   │   ├── bw-nav/         # Navigation component
+│   │   └── my-component/   # Example component
+│   ├── models/             # TypeScript interfaces and types
+│   │   ├── ILink.ts        # Link interface
+│   │   └── themes.ts       # Theme definitions
+│   ├── utils/              # Utility functions
+│   └── index.ts            # Library entry point
+├── www/                    # Development server assets
+├── loader/                 # Loader scripts for different module formats
+├── dist/                   # Compiled output
+├── package.json            # Project dependencies and scripts
+├── stencil.config.ts       # Stencil build configuration
+├── tsconfig.json           # TypeScript configuration
+└── vitest.config.ts        # Vitest configuration
+```
 
 ## Getting Started
 
-To start building a new web component using Stencil, clone this repo to a new directory:
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/stenciljs/component-starter.git my-component
-cd my-component
-git remote rm origin
+git clone https://github.com/your-org/blackwall.git
+cd blackwall
+npm install
 ```
 
-and run:
+### Development
+
+Start the development server with hot reload:
 
 ```bash
-npm install
 npm start
 ```
 
-To build the component for production, run:
+The dev server will run on `http://localhost:3333` with live reloading enabled.
+
+### Building
+
+Build the components for production:
 
 ```bash
 npm run build
 ```
 
-To run the unit tests for the components, run:
+The compiled output will be available in the `dist/` directory and `loader/` directory for different module formats (ESM, CJS, etc.).
+
+### Testing
+
+Run the complete test suite:
 
 ```bash
 npm test
 ```
 
-Need help? Check out our docs [here](https://stenciljs.com/docs/my-first-component).
+Run tests in watch mode for development:
 
-## Naming Components
+```bash
+npm run test:watch
+```
 
-When creating new component tags, we recommend _not_ using `stencil` in the component name (ex: `<stencil-datepicker>`). This is because the generated component has little to nothing to do with Stencil; it's just a web component!
+Tests are written with Vitest and include:
+- Unit tests (`.spec.tsx` files)
+- E2E tests (`.e2e.ts` files)
 
-Instead, use a prefix that fits your company or any name for a group of related components. For example, all of the [Ionic-generated](https://ionicframework.com/) web components use the prefix `ion`.
+## Using Blackwall Components
 
-## Using this component
+### As a Node Module
+
+```typescript
+import { defineCustomElements } from 'blackwall/loader';
+
+defineCustomElements();
+```
+
+Then use components in your HTML:
+
+```html
+<bw-btn name="Click Me" size="1.5rem"></bw-btn>
+
+<bw-card 
+  name="Card Title"
+  description="This is a card component"
+  img-src="./image.jpg"
+  img-alt="Description"
+  tag-title="Tags"
+  tags="['tag1', 'tag2']"
+>
+</bw-card>
+```
+
+### Via CDN
+
+```html
+<script src="https://unpkg.com/blackwall@latest/dist/blackwall/blackwall.esm.js"></script>
+
+<bw-btn name="Click Me"></bw-btn>
+```
+
+## Theming
+
+Blackwall includes a built-in theming system. Themes are defined in the `src/models/themes.ts` file:
+
+```typescript
+const ThemeOptions = {
+  skyLight: {
+    color: "#ffffff",
+    primary: "#131b2e",
+    secondary: "#0b0f19",
+    // size scale
+    xxxl: "4rem",
+    xxl: "3rem",
+    xl: "2rem",
+    lg: "1.5rem",
+    md: "1.2rem",
+    sm: "0.8rem",
+  }
+};
+```
+
+## Scripts
+
+- `npm start` - Start development server with live reload
+- `npm run build` - Build components for production
+- `npm test` - Run unit and E2E tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run generate` - Generate a new component scaffold
+
+## Generating New Components
+
+Use the Stencil generator to scaffold new components:
+
+```bash
+npm run generate
+```
+
+Follow the prompts to create a new component with proper structure and tests.
+
+## License
+
+MIT © Blackwall
+
+## Support
+
+For issues, questions, or contributions, please visit the project repository or contact the development team.
 
 There are two strategies we recommend for using web components built with Stencil.
 
@@ -58,54 +204,3 @@ You can read more about these different approaches in the [Stencil docs](https:/
 ### Lazy Loading
 
 If your Stencil project is built with the [`dist`](https://stenciljs.com/docs/distribution) output target, you can import a small bootstrap script that registers all components and allows you to load individual component scripts lazily.
-
-For example, given your Stencil project namespace is called `my-design-system`, to use `my-component` on any website, inject this into your HTML:
-
-```html
-<script type="module" src="https://unpkg.com/my-design-system"></script>
-<!--
-To avoid unpkg.com redirects to the actual file, you can also directly import:
-https://unpkg.com/foobar-design-system@0.0.1/dist/foobar-design-system/foobar-design-system.esm.js
--->
-<my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
-```
-
-This will only load the necessary scripts needed to render `<my-component />`. Once more components of this package are used, they will automatically be loaded lazily.
-
-You can also import the script as part of your `node_modules` in your applications entry file:
-
-```tsx
-import 'foobar-design-system/dist/foobar-design-system/foobar-design-system.esm.js';
-```
-
-Check out this [Live Demo](https://stackblitz.com/edit/vitejs-vite-y6v26a?file=src%2Fmain.tsx).
-
-### Standalone
-
-If you are using a Stencil component library with `dist-custom-elements`, we recommend importing Stencil components individually in those files where they are needed.
-
-To export Stencil components as standalone components make sure you have the [`dist-custom-elements`](https://stenciljs.com/docs/custom-elements) output target defined in your `stencil.config.ts`.
-
-For example, given you'd like to use `<my-component />` as part of a React component, you can import the component directly via:
-
-```tsx
-import 'foobar-design-system/my-component';
-
-function App() {
-  return (
-    <>
-      <div>
-        <my-component
-          first="Stencil"
-          middle="'Don't call me a framework'"
-          last="JS"
-        ></my-component>
-      </div>
-    </>
-  );
-}
-
-export default App;
-```
-
-Check out this [Live Demo](https://stackblitz.com/edit/vitejs-vite-b6zuds?file=src%2FApp.tsx).
